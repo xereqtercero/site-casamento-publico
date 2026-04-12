@@ -11,90 +11,221 @@
       scroll-behavior: smooth;
     }
 
-    /* 👉 NOVA FONTE */
-    @font-face {
-      font-family: 'SangBleu';
-      src: url('SangBleuKingdom-Regular.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
-    }
-
-    :root {
-      --bg: #f4eee6;
-      --bg-2: #f8f4ef;
-      --card: rgba(255, 255, 255, 0.78);
-      --text: #54483f;
-      --muted: #85786d;
-      --primary: #9a3f2d;
-      --primary-dark: #7f3123;
-      --line: #dfd4c6;
-      --shadow: 0 12px 32px rgba(80, 60, 45, 0.08);
-      --radius: 18px;
-      --font-body: Georgia, serif;
-    }
-
     body {
       margin: 0;
-      font-family: var(--font-body);
-      color: var(--text);
+      font-family: Georgia, serif;
+      background: linear-gradient(135deg, #f5efe7, #f8f5ef);
+      color: #53473f;
       text-align: center;
-      background: linear-gradient(135deg, var(--bg), var(--bg-2));
     }
 
     .container {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 0 20px 80px;
-    }
-
-    .hero {
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-card {
-      width: 100%;
-      padding: 60px 20px;
-      border-radius: 24px;
-      background: rgba(255,255,255,0.6);
-      backdrop-filter: blur(6px);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-tag {
-      font-size: 13px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 20px;
-    }
-
-    /* 🔥 AQUI ESTÁ A MUDANÇA */
-    .hero h1 {
-      font-family: 'SangBleu', serif;
-      font-size: 100px;
-      color: var(--primary);
-      margin: 0;
-      font-weight: normal;
-      letter-spacing: 1px;
-    }
-
-    .hero-divider {
-      width: 80px;
-      height: 1px;
-      background: #d8cfc5;
-      margin: 30px auto;
-    }
-
-    .hero-subtitle {
-      font-size: 18px;
-      line-height: 1.8;
-      max-width: 700px;
+      max-width: 960px;
       margin: auto;
+      padding: 40px 20px 70px;
     }
 
+    h1 {
+      font-size: 64px;
+      color: #9a3f2d;
+      margin: 10px 0 20px;
+      line-height: 1;
+    }
+
+    h2 {
+      color: #9a3f2d;
+      margin-top: 54px;
+      margin-bottom: 18px;
+      font-size: 28px;
+    }
+
+    p {
+      line-height: 1.8;
+      font-size: 18px;
+    }
+
+    .card {
+      background: white;
+      padding: 28px;
+      border-radius: 16px;
+      margin-top: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      text-align: left;
+    }
+
+    .centered {
+      text-align: center;
+    }
+
+    .search-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px 16px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: 1px solid #d8d0c8;
+      font-size: 18px;
+      background: white;
+    }
+
+    input[disabled] {
+      background: #f3efea;
+      color: #6d6158;
+    }
+
+    label {
+      display: block;
+      margin-top: 18px;
+      margin-bottom: 4px;
+      font-size: 16px;
+      color: #6e6258;
+    }
+
+    .button {
+      background: #a9472f;
+      color: white;
+      padding: 13px 24px;
+      border: none;
+      margin-top: 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .button:hover {
+      background: #8a3926;
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .gallery img {
+      width: 30%;
+      min-width: 220px;
+      border-radius: 14px;
+      display: block;
+    }
+
+    .gift-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .gift {
+      background: white;
+      padding: 18px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .count-item {
+      background: white;
+      padding: 18px 20px;
+      border-radius: 14px;
+      min-width: 110px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    .count-number {
+      font-size: 34px;
+      color: #9a3f2d;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .suggestions-card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      margin-top: 8px;
+      text-align: left;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    .suggestion-item {
+      padding: 14px 16px;
+      cursor: pointer;
+      border-bottom: 1px solid #f0ece8;
+      font-size: 17px;
+    }
+
+    .suggestion-item:last-child {
+      border-bottom: none;
+    }
+
+    .suggestion-item:hover {
+      background: #f7f1ea;
+    }
+
+    .status-message {
+      margin-top: 18px;
+      font-size: 18px;
+    }
+
+    .success-message {
+      color: #2f7a42;
+    }
+
+    .error-message {
+      color: #b23a2b;
+    }
+
+    .warning-message {
+      color: #b23a2b;
+      margin-top: 18px;
+      line-height: 1.7;
+    }
+
+    .info-block {
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ece5dd;
+      margin: 24px 0;
+    }
+
+    @media (max-width: 720px) {
+      h1 {
+        font-size: 50px;
+      }
+
+      .gift-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery img {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 
@@ -102,24 +233,336 @@
 
 <div class="container">
 
-  <section class="hero">
-    <div class="hero-card">
-      <div class="hero-tag">15 de agosto de 2026</div>
+  <h1>Marina e Victor</h1>
 
-      <!-- 👇 AQUI USA A NOVA FONTE -->
-      <h1>Marina e Victor</h1>
+  <p>
+    É com muita alegria que convidamos vocês para o nosso casamento.<br><br>
+    Reserve a nossa data: <b>15/08/2026</b>.<br><br>
+    A presença de vocês é muito importante para nós!
+  </p>
 
-      <div class="hero-divider"></div>
+  <h2>Informações</h2>
+  <div class="info-block">
+    <p>
+      <b>Data:</b> 15 de agosto de 2026<br>
+      <b>Horário:</b> 15h<br>
+      <b>Local:</b> Haras Vila Real - Embu das Artes
+    </p>
+  </div>
 
-      <p class="hero-subtitle">
-        É com muita alegria que convidamos vocês para o nosso casamento.
-        Reserve a nossa data: <strong>15/08/2026</strong>.
-        A presença de vocês é muito importante para nós.
-      </p>
+  <h2>Contagem regressiva</h2>
+  <div class="countdown">
+    <div class="count-item">
+      <span class="count-number" id="dias">0</span>
+      Dias
     </div>
-  </section>
+    <div class="count-item">
+      <span class="count-number" id="horas">0</span>
+      Horas
+    </div>
+    <div class="count-item">
+      <span class="count-number" id="minutos">0</span>
+      Minutos
+    </div>
+    <div class="count-item">
+      <span class="count-number" id="segundos">0</span>
+      Segundos
+    </div>
+  </div>
+
+  <h2>Fotos</h2>
+  <div class="gallery">
+    <img src="https://via.placeholder.com/600x750?text=Foto+1" alt="Foto 1 do casal">
+    <img src="https://via.placeholder.com/600x750?text=Foto+2" alt="Foto 2 do casal">
+    <img src="https://via.placeholder.com/600x750?text=Foto+3" alt="Foto 3 do casal">
+  </div>
+
+  <h2>Confirme sua presença</h2>
+
+  <div class="search-wrap">
+    <input
+      id="buscaNome"
+      placeholder="Digite seu nome"
+      autocomplete="off"
+      oninput="mostrarSugestoes()"
+    >
+    <button class="button" type="button" onclick="buscar()">Pesquisar</button>
+
+    <div id="resultado"></div>
+  </div>
+
+  <h2>Lista de presentes</h2>
+  <div class="gift-grid">
+    <div class="gift">
+      <p><b>Jantar romântico</b><br>R$ 200</p>
+      <button class="button" type="button" onclick="pix()">Copiar PIX</button>
+    </div>
+
+    <div class="gift">
+      <p><b>Lua de mel</b><br>R$ 500</p>
+      <button class="button" type="button" onclick="pix()">Copiar PIX</button>
+    </div>
+
+    <div class="gift">
+      <p><b>Brinde especial</b><br>R$ 150</p>
+      <button class="button" type="button" onclick="pix()">Copiar PIX</button>
+    </div>
+
+    <div class="gift">
+      <p><b>Nova casa</b><br>R$ 350</p>
+      <button class="button" type="button" onclick="pix()">Copiar PIX</button>
+    </div>
+  </div>
+
+  <h2>Dress code</h2>
+  <div class="info-block">
+    <p>Esporte fino para um dia de frio</p>
+  </div>
+
+  <h2>Observações</h2>
+  <div class="info-block">
+    <p>
+      Estacionamento no local<br>
+      Hospedagem em breve<br>
+      Início: 15h
+    </p>
+  </div>
 
 </div>
+
+<script>
+  const url = "https://script.google.com/macros/s/AKfycby62APQM6iXtLD0zskznLl5CJtYbClqVHALUxiAmqMuoWMPE6pIU1oJd1rwnHue7uia/exec";
+
+  let convidados = [];
+  let confirmados = [];
+  let convidadoAtual = null;
+
+  function normalizar(texto) {
+    return (texto || "")
+      .toString()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .trim();
+  }
+
+  async function carregar() {
+    try {
+      resultado.innerHTML = "<p class='status-message'>Carregando convidados...</p>";
+
+      const res = await fetch(url);
+      const dados = await res.json();
+
+      convidados = Array.isArray(dados.convidados) ? dados.convidados : [];
+      confirmados = Array.isArray(dados.confirmados) ? dados.confirmados : [];
+
+      resultado.innerHTML = "";
+    } catch (erro) {
+      console.error("Erro ao carregar convidados:", erro);
+      resultado.innerHTML = "<p class='status-message error-message'>Erro ao carregar lista de convidados.</p>";
+    }
+  }
+
+  function mostrarSugestoes() {
+    const termo = normalizar(document.getElementById("buscaNome").value);
+
+    if (!termo) {
+      resultado.innerHTML = "";
+      return;
+    }
+
+    const encontrados = convidados.filter(c =>
+      normalizar(c.nome).includes(termo)
+    );
+
+    if (!encontrados.length) {
+      resultado.innerHTML = "<p class='status-message'>Nenhum convite encontrado.</p>";
+      return;
+    }
+
+    let html = `<div class="suggestions-card">`;
+
+    encontrados.slice(0, 6).forEach(c => {
+      const nomeEscapado = c.nome.replace(/'/g, "\\'");
+      html += `
+        <div class="suggestion-item" onclick="selecionarConvidado('${nomeEscapado}')">
+          ${c.nome}
+        </div>
+      `;
+    });
+
+    html += `</div>`;
+    resultado.innerHTML = html;
+  }
+
+  function selecionarConvidado(nome) {
+    document.getElementById("buscaNome").value = nome;
+    buscar();
+  }
+
+  function buscar() {
+    const nome = normalizar(document.getElementById("buscaNome").value);
+
+    if (!nome) {
+      resultado.innerHTML = "<p class='status-message'>Digite seu nome para pesquisar.</p>";
+      return;
+    }
+
+    const c = convidados.find(x => normalizar(x.nome).includes(nome));
+
+    if (!c) {
+      resultado.innerHTML = "<p class='status-message'>Não encontrado.</p>";
+      return;
+    }
+
+    const jaConfirmado = confirmados.some(item => normalizar(item) === normalizar(c.nome));
+
+    if (jaConfirmado) {
+      resultado.innerHTML = `
+        <div class="card centered">
+          <p class="success-message"><b>${c.nome}</b></p>
+          <p>Sua presença já foi confirmada 💛</p>
+        </div>
+      `;
+      return;
+    }
+
+    convidadoAtual = c;
+
+    let html = `
+      <div class="card" id="form-rsvp">
+        <p><b>${c.nome}</b></p>
+
+        <label>Grupo de idade</label>
+        <select id="idade0">
+          <option value="Adulto">Adulto</option>
+          <option value="Criança">Criança</option>
+        </select>
+
+        <label>Você irá?</label>
+        <select id="p0">
+          <option value="">Selecione</option>
+          <option value="Comparecerá">Comparecerá</option>
+          <option value="Não comparecerá">Não comparecerá</option>
+        </select>
+    `;
+
+    if (Array.isArray(c.acompanhantes) && c.acompanhantes.length > 0) {
+      c.acompanhantes.forEach((a, i) => {
+        html += `
+          <hr>
+          <p><b>${a}</b></p>
+
+          <label>Grupo de idade</label>
+          <select id="idade${i + 1}">
+            <option value="Adulto">Adulto</option>
+            <option value="Criança">Criança</option>
+          </select>
+
+          <label>Presença</label>
+          <select id="p${i + 1}">
+            <option value="">Selecione</option>
+            <option value="Comparecerá">Comparecerá</option>
+            <option value="Não comparecerá">Não comparecerá</option>
+          </select>
+        `;
+      });
+
+      html += `<p class="warning-message">Você atingiu a quantidade máxima de convidados permitidos para este convite.</p>`;
+    }
+
+    html += `<button class="button" type="button" onclick="enviar()">Confirmar</button></div>`;
+
+    resultado.innerHTML = html;
+
+    const form = document.getElementById("form-rsvp");
+    if (form) {
+      form.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  async function enviar() {
+    if (!convidadoAtual) return;
+
+    const presencaPrincipal = document.getElementById("p0").value;
+    const idadePrincipal = document.getElementById("idade0").value;
+
+    if (!presencaPrincipal) {
+      alert("Selecione a presença do convidado principal.");
+      return;
+    }
+
+    const acompanhantesPayload = [];
+
+    if (Array.isArray(convidadoAtual.acompanhantes) && convidadoAtual.acompanhantes.length > 0) {
+      for (let i = 0; i < convidadoAtual.acompanhantes.length; i++) {
+        const nome = convidadoAtual.acompanhantes[i];
+        const idade = document.getElementById(`idade${i + 1}`).value;
+        const presenca = document.getElementById(`p${i + 1}`).value;
+
+        if (!presenca) {
+          alert(`Selecione a presença de ${nome}.`);
+          return;
+        }
+
+        acompanhantesPayload.push({
+          nome,
+          idade,
+          presenca
+        });
+      }
+    }
+
+    const payload = {
+      nomeConvite: convidadoAtual.nome,
+      nomePrincipal: convidadoAtual.nome,
+      idadePrincipal: idadePrincipal,
+      presencaPrincipal: presencaPrincipal,
+      acompanhantes: acompanhantesPayload
+    };
+
+    try {
+      await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(payload)
+      });
+
+      resultado.innerHTML = `
+        <div class="card centered">
+          <p class="success-message"><b>Confirmado 💛</b></p>
+          <p>Estamos muito felizes em ter você com a gente.</p>
+        </div>
+      `;
+    } catch (erro) {
+      console.error("Erro ao enviar RSVP:", erro);
+      resultado.innerHTML = "<p class='status-message error-message'>Erro ao enviar confirmação.</p>";
+    }
+  }
+
+  function pix() {
+    navigator.clipboard.writeText("40993446817");
+    alert("PIX copiado");
+  }
+
+  const data = new Date("Aug 15, 2026 15:00:00").getTime();
+
+  setInterval(() => {
+    const now = new Date().getTime();
+    const diff = data - now;
+
+    const dias = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
+    const horas = Math.max(0, Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+    const minutos = Math.max(0, Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
+    const segundos = Math.max(0, Math.floor((diff % (1000 * 60)) / 1000));
+
+    document.getElementById("dias").innerText = dias;
+    document.getElementById("horas").innerText = horas;
+    document.getElementById("minutos").innerText = minutos;
+    document.getElementById("segundos").innerText = segundos;
+  }, 1000);
+
+  carregar();
+</script>
 
 </body>
 </html>
