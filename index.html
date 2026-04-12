@@ -1,177 +1,247 @@
-<!-- SOMENTE TRECHO DO SCRIPT ALTERADO (mantive o resto igual ao seu atual) -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Marina e Victor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * { box-sizing: border-box; scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      background: linear-gradient(135deg, #f5efe7, #f8f5ef);
+      color: #53473f;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 60px;
+      color: #9a3f2d;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #9a3f2d;
+      margin-top: 50px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      margin-top: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      text-align: left;
+    }
+
+    .centered { text-align: center; }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .button {
+      background: #9a3f2d;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      margin-top: 15px;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    .button:hover { background: #7f3123; }
+
+    .suggestions-card {
+      background: white;
+      border-radius: 10px;
+      margin-top: 5px;
+      text-align: left;
+      overflow: hidden;
+      border: 1px solid #ddd;
+    }
+
+    .suggestion-item {
+      padding: 12px;
+      cursor: pointer;
+      border-bottom: 1px solid #eee;
+    }
+
+    .suggestion-item:hover {
+      background: #f5efe7;
+    }
+
+    .status-message {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .success-message { color: green; }
+    .error-message { color: red; }
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Marina e Victor</h1>
+
+  <p>
+    É com muita alegria que convidamos vocês para o nosso casamento.<br><br>
+    Reserve a nossa data: <b>15/08/2026</b>.<br><br>
+    A presença de vocês é muito importante para nós!
+  </p>
+
+  <h2>Confirme sua presença</h2>
+
+  <input id="buscaNome" placeholder="Digite seu nome" oninput="mostrarSugestoes()">
+  <button class="button" onclick="buscarConvidado()">Pesquisar</button>
+
+  <div id="resultadoBusca"></div>
+
+</div>
 
 <script>
-  const url = "https://script.google.com/macros/s/AKfycby62APQM6iXtLD0zskznLl5CJtYbClqVHALUxiAmqMuoWMPE6pIU1oJd1rwnHue7uia/exec";
+const url = "https://script.google.com/macros/s/AKfycby62APQM6iXtLD0zskznLl5CJtYbClqVHALUxiAmqMuoWMPE6pIU1oJd1rwnHue7uia/exec";
 
-  let convidados = [];
-  let confirmados = [];
-  let convidadoAtual = null;
+let convidados = [];
+let confirmados = [];
+let convidadoAtual = null;
 
-  function normalizarTexto(texto) {
-    return (texto || "")
-      .toString()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .trim()
-      .toLowerCase();
+function normalizarTexto(t){
+  return t.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();
+}
+
+async function carregarDados(){
+  document.getElementById("resultadoBusca").innerHTML =
+    "<p class='status-message'>Carregando convidados...</p>";
+
+  const res = await fetch(url);
+  const dados = await res.json();
+
+  convidados = dados.convidados;
+  confirmados = dados.confirmados;
+
+  document.getElementById("resultadoBusca").innerHTML = "";
+}
+
+function mostrarSugestoes(){
+  const busca = normalizarTexto(buscaNome.value);
+
+  if(!busca){ resultadoBusca.innerHTML=""; return; }
+
+  const lista = convidados.filter(c => normalizarTexto(c.nome).includes(busca));
+
+  let html = `<div class="suggestions-card">`;
+
+  lista.slice(0,5).forEach(c=>{
+    html += `<div class="suggestion-item" onclick="selecionar('${c.nome}')">${c.nome}</div>`;
+  });
+
+  html += "</div>";
+  resultadoBusca.innerHTML = html;
+}
+
+function selecionar(nome){
+  buscaNome.value = nome;
+  buscarConvidado();
+}
+
+function buscarConvidado(){
+  const busca = normalizarTexto(buscaNome.value);
+
+  const c = convidados.find(x=>normalizarTexto(x.nome).includes(busca));
+
+  if(!c){
+    resultadoBusca.innerHTML = "<p class='status-message'>Não encontrado</p>";
+    return;
   }
 
-  async function carregarDados() {
-    document.getElementById("resultadoBusca").innerHTML =
-      "<p class='status-message'>Carregando lista de convidados...</p>";
-
-    try {
-      const resposta = await fetch(url);
-      const dados = await resposta.json();
-
-      convidados = dados.convidados || [];
-      confirmados = dados.confirmados || [];
-
-      document.getElementById("resultadoBusca").innerHTML = "";
-    } catch (erro) {
-      document.getElementById("resultadoBusca").innerHTML =
-        "<p class='status-message error-message'>Erro ao carregar lista. Tente atualizar a página.</p>";
-    }
-  }
-
-  function mostrarSugestoes() {
-    const busca = normalizarTexto(document.getElementById("buscaNome").value);
-
-    if (!busca) {
-      document.getElementById("resultadoBusca").innerHTML = "";
-      return;
-    }
-
-    const resultados = convidados.filter(c =>
-      normalizarTexto(c.nome).includes(busca)
-    );
-
-    let html = `<div class="suggestions-card">`;
-
-    resultados.slice(0, 5).forEach(c => {
-      html += `
-        <div class="suggestion-item" onclick="selecionarConvidado('${c.nome}')">
-          ${c.nome}
-        </div>
-      `;
-    });
-
-    html += `</div>`;
-
-    document.getElementById("resultadoBusca").innerHTML = html;
-  }
-
-  function selecionarConvidado(nome) {
-    document.getElementById("buscaNome").value = nome;
-    buscarConvidado();
-  }
-
-  function buscarConvidado() {
-    const busca = normalizarTexto(document.getElementById("buscaNome").value);
-
-    const encontrado = convidados.find(c =>
-      normalizarTexto(c.nome).includes(busca)
-    );
-
-    if (!encontrado) {
-      document.getElementById("resultadoBusca").innerHTML =
-        "<p class='status-message'>Nenhum convite encontrado.</p>";
-      return;
-    }
-
-    const jaConfirmou = confirmados.includes(encontrado.nome);
-
-    if (jaConfirmou) {
-      document.getElementById("resultadoBusca").innerHTML = `
-        <div class="card centered">
-          <p class="card-heading">${encontrado.nome}</p>
-          <p class="success-message">Sua presença já foi confirmada 💛</p>
-        </div>
-      `;
-      return;
-    }
-
-    convidadoAtual = encontrado;
-
-    let html = `
-      <div class="card" id="formRSVP">
-        <p class="card-heading">Confirme sua presença</p>
-
-        <label>Nome principal:</label>
-        <input type="text" value="${encontrado.nome}" disabled>
-
-        <label>Grupo de idade:</label>
-        <select id="idadePrincipal">
-          <option value="Adulto">Adulto</option>
-          <option value="Criança">Criança</option>
-        </select>
-
-        <label>Status:</label>
-        <select id="presencaPrincipal">
-          <option value="">Selecione</option>
-          <option value="Comparecerá">Irá comparecer</option>
-          <option value="Não comparecerá">Não irá comparecer</option>
-        </select>
-    `;
-
-    encontrado.acompanhantes.forEach((nome, i) => {
-      html += `
-        <hr>
-        <label>${nome}:</label>
-        <input type="text" value="${nome}" disabled>
-
-        <select id="idade${i}">
-          <option value="Adulto">Adulto</option>
-          <option value="Criança">Criança</option>
-        </select>
-
-        <select id="presenca${i}">
-          <option value="">Selecione</option>
-          <option value="Comparecerá">Irá comparecer</option>
-          <option value="Não comparecerá">Não irá comparecer</option>
-        </select>
-      `;
-    });
-
-    html += `
-        <button class="button" onclick="enviarConfirmacao()">Confirmar presença</button>
-      </div>
-    `;
-
-    document.getElementById("resultadoBusca").innerHTML = html;
-
-    // 🔥 SCROLL AUTOMÁTICO
-    document.getElementById("formRSVP").scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-  }
-
-  async function enviarConfirmacao() {
-    const payload = {
-      nomeConvite: convidadoAtual.nome,
-      nomePrincipal: convidadoAtual.nome,
-      idadePrincipal: document.getElementById("idadePrincipal").value,
-      presencaPrincipal: document.getElementById("presencaPrincipal").value,
-      acompanhantes: convidadoAtual.acompanhantes.map((nome, i) => ({
-        nome,
-        idade: document.getElementById(`idade${i}`).value,
-        presenca: document.getElementById(`presenca${i}`).value
-      }))
-    };
-
-    await fetch(url, {
-      method: "POST",
-      body: JSON.stringify(payload)
-    });
-
-    document.getElementById("resultadoBusca").innerHTML = `
+  if(confirmados.includes(c.nome)){
+    resultadoBusca.innerHTML = `
       <div class="card centered">
-        <p class="success-message"><strong>Presença confirmada 💛</strong></p>
-        <p>Estamos muito felizes em ter você com a gente!</p>
+        <p class="success-message">Sua presença já foi confirmada 💛</p>
       </div>
     `;
+    return;
   }
 
-  carregarDados();
+  convidadoAtual = c;
+
+  let html = `
+    <div class="card" id="form">
+      <p><b>${c.nome}</b></p>
+
+      <label>Você irá?</label>
+      <select id="p0">
+        <option value="">Selecione</option>
+        <option>Comparecerá</option>
+        <option>Não comparecerá</option>
+      </select>
+  `;
+
+  c.acompanhantes.forEach((a,i)=>{
+    html+=`
+      <hr>
+      <p>${a}</p>
+      <select id="p${i+1}">
+        <option value="">Selecione</option>
+        <option>Comparecerá</option>
+        <option>Não comparecerá</option>
+      </select>
+    `;
+  });
+
+  html+=`
+      <button class="button" onclick="enviar()">Confirmar</button>
+    </div>
+  `;
+
+  resultadoBusca.innerHTML = html;
+
+  document.getElementById("form").scrollIntoView({behavior:"smooth"});
+}
+
+async function enviar(){
+
+  const payload = {
+    nomeConvite: convidadoAtual.nome,
+    nomePrincipal: convidadoAtual.nome,
+    presencaPrincipal: document.getElementById("p0").value,
+    acompanhantes: convidadoAtual.acompanhantes.map((a,i)=>({
+      nome:a,
+      presenca: document.getElementById(`p${i+1}`).value
+    }))
+  };
+
+  await fetch(url,{
+    method:"POST",
+    body:JSON.stringify(payload)
+  });
+
+  resultadoBusca.innerHTML = `
+    <div class="card centered">
+      <p class="success-message"><b>Presença confirmada 💛</b></p>
+    </div>
+  `;
+}
+
+carregarDados();
 </script>
+
+</body>
+</html>
