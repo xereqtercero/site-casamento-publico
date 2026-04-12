@@ -327,9 +327,6 @@
 
       convidados = Array.isArray(dados.convidados) ? dados.convidados : [];
       confirmados = Array.isArray(dados.confirmados) ? dados.confirmados : [];
-
-      console.log("Convidados carregados:", convidados);
-      console.log("Confirmados carregados:", confirmados);
     } catch (erro) {
       console.error("Erro ao carregar dados:", erro);
       document.getElementById("resultadoBusca").innerHTML =
@@ -498,9 +495,7 @@
       return;
     }
 
-    const nomesAcompanhantes = [];
-    const idadesAcompanhantes = [];
-    const presencasAcompanhantes = [];
+    const acompanhantesPayload = [];
 
     if (Array.isArray(convidadoAtual.acompanhantes) && convidadoAtual.acompanhantes.length > 0) {
       for (let i = 0; i < convidadoAtual.acompanhantes.length; i++) {
@@ -514,19 +509,20 @@
           return;
         }
 
-        nomesAcompanhantes.push(nome);
-        idadesAcompanhantes.push(idade);
-        presencasAcompanhantes.push(presenca);
+        acompanhantesPayload.push({
+          nome: nome,
+          idade: idade,
+          presenca: presenca
+        });
       }
     }
 
     const payload = {
+      nomeConvite: convidadoAtual.nome,
       nomePrincipal: convidadoAtual.nome,
-      acompanhantes: nomesAcompanhantes.join(", "),
       idadePrincipal: idadePrincipal,
       presencaPrincipal: presencaPrincipal,
-      idadesAcompanhantes: idadesAcompanhantes.join(", "),
-      presencasAcompanhantes: presencasAcompanhantes.join(", ")
+      acompanhantes: acompanhantesPayload
     };
 
     try {
