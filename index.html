@@ -140,6 +140,7 @@
     .search-box {
       max-width: 650px;
       margin: 0 auto;
+      position: relative;
     }
 
     .status-message {
@@ -159,6 +160,33 @@
       color: #b03a2e;
       margin-top: 20px;
       font-size: 15px;
+    }
+
+    .suggestions-card {
+      border: 1px solid #ddd;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+      max-width: 650px;
+      margin: 0 auto;
+      text-align: left;
+      overflow: hidden;
+    }
+
+    .suggestion-item {
+      padding: 14px 16px;
+      cursor: pointer;
+      border-bottom: 1px solid #eee;
+      transition: background-color 0.2s;
+    }
+
+    .suggestion-item:last-child {
+      border-bottom: none;
+    }
+
+    .suggestion-item:hover {
+      background-color: #f8f3ee;
     }
 
     hr {
@@ -241,7 +269,7 @@
   <h2>✔ Confirme sua presença</h2>
 
   <div class="search-box">
-    <input type="text" id="buscaNome" placeholder="Digite seu nome">
+    <input type="text" id="buscaNome" placeholder="Digite seu nome" oninput="mostrarSugestoes()">
     <button class="button" type="button" onclick="buscarConvidado()">Pesquisar</button>
   </div>
 
@@ -309,6 +337,51 @@
     }
   }
 
+  function mostrarSugestoes() {
+    const busca = normalizarTexto(document.getElementById("buscaNome").value);
+
+    if (!busca) {
+      document.getElementById("resultadoBusca").innerHTML = "";
+      return;
+    }
+
+    if (!convidados.length) {
+      document.getElementById("resultadoBusca").innerHTML =
+        "<p class='status-message error-message'>A lista de convidados ainda não foi carregada. Atualize a página e tente novamente.</p>";
+      return;
+    }
+
+    const resultados = convidados.filter(c =>
+      normalizarTexto(c.nome).includes(busca)
+    );
+
+    if (!resultados.length) {
+      document.getElementById("resultadoBusca").innerHTML =
+        "<p class='status-message'>Nenhum convite encontrado.</p>";
+      return;
+    }
+
+    let html = `<div class="suggestions-card">`;
+
+    resultados.slice(0, 5).forEach(c => {
+      const nomeSeguro = c.nome.replace(/'/g, "\\'");
+      html += `
+        <div class="suggestion-item" onclick="selecionarConvidado('${nomeSeguro}')">
+          ${c.nome}
+        </div>
+      `;
+    });
+
+    html += `</div>`;
+
+    document.getElementById("resultadoBusca").innerHTML = html;
+  }
+
+  function selecionarConvidado(nome) {
+    document.getElementById("buscaNome").value = nome;
+    buscarConvidado();
+  }
+
   function buscarConvidado() {
     const busca = normalizarTexto(document.getElementById("buscaNome").value);
 
@@ -325,7 +398,7 @@
     }
 
     const encontrado = convidados.find(c =>
-      normalizarTexto(c.nome).includes(busca)
+      normalizarTexto(c.nome) === busca || normalizarTexto(c.nome).includes(busca)
     );
 
     if (!encontrado) {
