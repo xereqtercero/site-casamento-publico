@@ -25,7 +25,6 @@
     h1 {
       font-size: 60px;
       color: #9a3f2d;
-      margin-bottom: 10px;
     }
 
     h2 {
@@ -64,32 +63,31 @@
 
     .button:hover { background: #7f3123; }
 
-    .suggestions-card {
-      background: white;
+    .gallery img {
+      width: 30%;
+      margin: 5px;
       border-radius: 10px;
-      margin-top: 5px;
-      text-align: left;
-      overflow: hidden;
-      border: 1px solid #ddd;
     }
 
-    .suggestion-item {
-      padding: 12px;
-      cursor: pointer;
-      border-bottom: 1px solid #eee;
+    .gift {
+      background: white;
+      padding: 15px;
+      margin: 10px;
+      border-radius: 10px;
     }
 
-    .suggestion-item:hover {
-      background: #f5efe7;
-    }
-
-    .status-message {
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
       margin-top: 20px;
-      font-size: 18px;
     }
 
-    .success-message { color: green; }
-    .error-message { color: red; }
+    .count-item {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+    }
 
   </style>
 </head>
@@ -106,114 +104,131 @@
     A presença de vocês é muito importante para nós!
   </p>
 
+  <!-- INFORMAÇÕES -->
+  <h2>Informações</h2>
+  <p>
+    15 de agosto de 2026<br>
+    15h<br>
+    Haras Vila Real - Embu das Artes
+  </p>
+
+  <!-- CONTAGEM -->
+  <h2>Contagem regressiva</h2>
+  <div class="countdown">
+    <div class="count-item"><span id="dias"></span><br>Dias</div>
+    <div class="count-item"><span id="horas"></span><br>Horas</div>
+    <div class="count-item"><span id="min"></span><br>Min</div>
+  </div>
+
+  <!-- FOTOS -->
+  <h2>Fotos</h2>
+  <div class="gallery">
+    <img src="https://via.placeholder.com/200">
+    <img src="https://via.placeholder.com/200">
+    <img src="https://via.placeholder.com/200">
+  </div>
+
+  <!-- RSVP -->
   <h2>Confirme sua presença</h2>
 
-  <input id="buscaNome" placeholder="Digite seu nome" oninput="mostrarSugestoes()">
-  <button class="button" onclick="buscarConvidado()">Pesquisar</button>
+  <input id="buscaNome" placeholder="Digite seu nome">
+  <button class="button" onclick="buscar()">Pesquisar</button>
 
-  <div id="resultadoBusca"></div>
+  <div id="resultado"></div>
+
+  <!-- PRESENTES -->
+  <h2>Lista de presentes</h2>
+
+  <div class="gift">
+    Jantar romântico - R$200<br>
+    <button class="button" onclick="pix()">Copiar PIX</button>
+  </div>
+
+  <div class="gift">
+    Lua de mel - R$500<br>
+    <button class="button" onclick="pix()">Copiar PIX</button>
+  </div>
+
+  <!-- DRESS CODE -->
+  <h2>Dress code</h2>
+  <p>Esporte fino para um dia de frio</p>
+
+  <!-- OBS -->
+  <h2>Observações</h2>
+  <p>
+    Estacionamento no local<br>
+    Hospedagem em breve<br>
+    Início: 15h
+  </p>
 
 </div>
 
 <script>
+
 const url = "https://script.google.com/macros/s/AKfycby62APQM6iXtLD0zskznLl5CJtYbClqVHALUxiAmqMuoWMPE6pIU1oJd1rwnHue7uia/exec";
 
 let convidados = [];
-let confirmados = [];
-let convidadoAtual = null;
+let convidadoAtual;
 
-function normalizarTexto(t){
-  return t.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();
+function normalizar(t){
+  return t.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
 }
 
-async function carregarDados(){
-  document.getElementById("resultadoBusca").innerHTML =
-    "<p class='status-message'>Carregando convidados...</p>";
-
+async function carregar(){
   const res = await fetch(url);
   const dados = await res.json();
-
   convidados = dados.convidados;
-  confirmados = dados.confirmados;
-
-  document.getElementById("resultadoBusca").innerHTML = "";
 }
 
-function mostrarSugestoes(){
-  const busca = normalizarTexto(buscaNome.value);
+function buscar(){
+  const nome = normalizar(buscaNome.value);
 
-  if(!busca){ resultadoBusca.innerHTML=""; return; }
-
-  const lista = convidados.filter(c => normalizarTexto(c.nome).includes(busca));
-
-  let html = `<div class="suggestions-card">`;
-
-  lista.slice(0,5).forEach(c=>{
-    html += `<div class="suggestion-item" onclick="selecionar('${c.nome}')">${c.nome}</div>`;
-  });
-
-  html += "</div>";
-  resultadoBusca.innerHTML = html;
-}
-
-function selecionar(nome){
-  buscaNome.value = nome;
-  buscarConvidado();
-}
-
-function buscarConvidado(){
-  const busca = normalizarTexto(buscaNome.value);
-
-  const c = convidados.find(x=>normalizarTexto(x.nome).includes(busca));
+  const c = convidados.find(x => normalizar(x.nome).includes(nome));
 
   if(!c){
-    resultadoBusca.innerHTML = "<p class='status-message'>Não encontrado</p>";
-    return;
-  }
-
-  if(confirmados.includes(c.nome)){
-    resultadoBusca.innerHTML = `
-      <div class="card centered">
-        <p class="success-message">Sua presença já foi confirmada 💛</p>
-      </div>
-    `;
+    resultado.innerHTML = "Não encontrado";
     return;
   }
 
   convidadoAtual = c;
 
   let html = `
-    <div class="card" id="form">
-      <p><b>${c.nome}</b></p>
+    <div class="card">
+      <b>${c.nome}</b>
 
-      <label>Você irá?</label>
+      <label>Idade</label>
+      <select id="idade0">
+        <option>Adulto</option>
+        <option>Criança</option>
+      </select>
+
+      <label>Presença</label>
       <select id="p0">
-        <option value="">Selecione</option>
         <option>Comparecerá</option>
         <option>Não comparecerá</option>
       </select>
   `;
 
   c.acompanhantes.forEach((a,i)=>{
-    html+=`
+    html += `
       <hr>
-      <p>${a}</p>
+      ${a}
+
+      <select id="idade${i+1}">
+        <option>Adulto</option>
+        <option>Criança</option>
+      </select>
+
       <select id="p${i+1}">
-        <option value="">Selecione</option>
         <option>Comparecerá</option>
         <option>Não comparecerá</option>
       </select>
     `;
   });
 
-  html+=`
-      <button class="button" onclick="enviar()">Confirmar</button>
-    </div>
-  `;
+  html += `<button class="button" onclick="enviar()">Confirmar</button></div>`;
 
-  resultadoBusca.innerHTML = html;
-
-  document.getElementById("form").scrollIntoView({behavior:"smooth"});
+  resultado.innerHTML = html;
 }
 
 async function enviar(){
@@ -221,9 +236,11 @@ async function enviar(){
   const payload = {
     nomeConvite: convidadoAtual.nome,
     nomePrincipal: convidadoAtual.nome,
+    idadePrincipal: document.getElementById("idade0").value,
     presencaPrincipal: document.getElementById("p0").value,
     acompanhantes: convidadoAtual.acompanhantes.map((a,i)=>({
       nome:a,
+      idade: document.getElementById(`idade${i+1}`).value,
       presenca: document.getElementById(`p${i+1}`).value
     }))
   };
@@ -233,14 +250,28 @@ async function enviar(){
     body:JSON.stringify(payload)
   });
 
-  resultadoBusca.innerHTML = `
-    <div class="card centered">
-      <p class="success-message"><b>Presença confirmada 💛</b></p>
-    </div>
-  `;
+  resultado.innerHTML = "<b>Confirmado 💛</b>";
 }
 
-carregarDados();
+function pix(){
+  navigator.clipboard.writeText("40993446817");
+  alert("PIX copiado");
+}
+
+// CONTAGEM
+const data = new Date("Aug 15, 2026 15:00:00").getTime();
+
+setInterval(()=>{
+  const now = new Date().getTime();
+  const diff = data - now;
+
+  document.getElementById("dias").innerText = Math.floor(diff / (1000*60*60*24));
+  document.getElementById("horas").innerText = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+  document.getElementById("min").innerText = Math.floor((diff%(1000*60*60))/(1000*60));
+},1000);
+
+carregar();
+
 </script>
 
 </body>
