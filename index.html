@@ -1,498 +1,110 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Marina e Victor</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    * {
-      scroll-behavior: smooth;
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Georgia', serif;
-      background: linear-gradient(135deg, #f5f1ec 0%, #faf8f3 100%);
-      color: #4a3f35;
-      text-align: center;
-    }
-
-    .container {
-      padding: 40px 20px;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    h1 {
-      font-size: 40px;
-      margin-bottom: 10px;
-      background: linear-gradient(135deg, #8c3b2e, #c97c63);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    h2 {
-      margin-top: 40px;
-      font-weight: normal;
-      color: #8c3b2e;
-    }
-
-    h3 {
-      color: #8c3b2e;
-      margin-top: 24px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      line-height: 1.6;
-    }
-
-    .countdown-container {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin: 20px 0;
-      flex-wrap: wrap;
-    }
-
-    .countdown-item {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      min-width: 70px;
-    }
-
-    .countdown-number {
-      font-size: 32px;
-      font-weight: bold;
-      color: #8c3b2e;
-    }
-
-    .countdown-label {
-      font-size: 12px;
-      color: #999;
-      margin-top: 5px;
-    }
-
-    .highlight {
-      color: #8c3b2e;
-    }
-
-    .button {
-      background-color: #8c3b2e;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      cursor: pointer;
-      margin-top: 10px;
-      border-radius: 4px;
-      transition: background-color 0.3s;
-      font-size: 16px;
-    }
-
-    .button:hover {
-      background-color: #c97c63;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      box-sizing: border-box;
-      font-size: 16px;
-      background: white;
-    }
-
-    input[disabled] {
-      background: #f2f2f2;
-      color: #777;
-    }
-
-    label {
-      display: block;
-      margin-top: 16px;
-      margin-bottom: 4px;
-      text-align: left;
-      font-weight: bold;
-      color: #5a4d43;
-    }
-
-    .gallery img {
-      width: 30%;
-      margin: 5px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .gift {
-      border: 1px solid #ddd;
-      padding: 20px;
-      margin: 20px auto;
-      border-radius: 8px;
-      background: white;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      max-width: 650px;
-      text-align: left;
-    }
-
-    .search-box {
-      max-width: 650px;
-      margin: 0 auto;
-    }
-
-    .status-message {
-      margin-top: 16px;
-      font-size: 18px;
-    }
-
-    .error-message {
-      color: #b03a2e;
-    }
-
-    .success-message {
-      color: #2e7d32;
-    }
-
-    .warning-message {
-      color: #b03a2e;
-      margin-top: 20px;
-      font-size: 15px;
-    }
-
-    hr {
-      margin: 24px 0;
-      border: none;
-      border-top: 1px solid #e5ddd5;
-    }
-
-    @media (max-width: 700px) {
-      .gallery img {
-        width: 90%;
-        display: block;
-        margin: 10px auto;
-      }
-
-      h1 {
-        font-size: 32px;
-      }
-
-      .countdown-item {
-        min-width: 60px;
-        padding: 16px;
-      }
-
-      .countdown-number {
-        font-size: 24px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-<div class="container">
-
-  <h1>Marina e Victor</h1>
-
-  <p>
-    É com muita alegria que convidamos vocês para o nosso casamento.<br><br>
-    Reserve a nossa data: <b>15/08/2026</b>.<br><br>
-    A presença de vocês é muito importante para nós!<br><br>
-    Em breve, enviaremos mais detalhes.<br><br>
-    Com carinho, Marina e Victor.
-  </p>
-
-  <h2>📅 Informações</h2>
-  <p>
-    <b>Data:</b> 15 de agosto de 2026<br>
-    <b>Horário:</b> 15h<br>
-    <b>Local:</b> Haras Vila Real - Embu das Artes
-  </p>
-
-  <h2>⏳ Contagem regressiva</h2>
-  <div class="countdown-container" id="countdown">
-    <div class="countdown-item">
-      <div class="countdown-number" id="days">0</div>
-      <div class="countdown-label">Dias</div>
-    </div>
-    <div class="countdown-item">
-      <div class="countdown-number" id="hours">0</div>
-      <div class="countdown-label">Horas</div>
-    </div>
-    <div class="countdown-item">
-      <div class="countdown-number" id="minutes">0</div>
-      <div class="countdown-label">Minutos</div>
-    </div>
-    <div class="countdown-item">
-      <div class="countdown-number" id="seconds">0</div>
-      <div class="countdown-label">Segundos</div>
-    </div>
-  </div>
-
-  <h2>📸 Fotos</h2>
-  <div class="gallery">
-    <img src="https://via.placeholder.com/200" alt="Foto 1 do casal">
-    <img src="https://via.placeholder.com/200" alt="Foto 2 do casal">
-    <img src="https://via.placeholder.com/200" alt="Foto 3 do casal">
-  </div>
-
-  <h2>✔ Confirme sua presença</h2>
-
-  <div class="search-box">
-    <input type="text" id="buscaNome" placeholder="Digite seu nome">
-    <button class="button" onclick="buscarConvidado()">Pesquisar</button>
-  </div>
-
-  <div id="resultadoBusca"></div>
-
-  <h2>🎁 Lista de presentes</h2>
-
-  <div class="gift" style="text-align:center;">
-    <p>Jantar romântico - R$200</p>
-    <button class="button" onclick="copiarPix()">Copiar chave PIX</button>
-  </div>
-
-  <div class="gift" style="text-align:center;">
-    <p>Lua de mel - R$500</p>
-    <button class="button" onclick="copiarPix()">Copiar chave PIX</button>
-  </div>
-
-  <h2>👗 Dress code</h2>
-  <p>Esporte fino para um dia de frio</p>
-
-  <h2>ℹ️ Observações</h2>
-  <p>
-    Estacionamento no local<br>
-    Dicas de hospedagem (em breve)<br>
-    Horário de início: 15h
-  </p>
-
-</div>
-
 <script>
-  const url = "https://script.google.com/macros/s/AKfycby62APQM6iXtLD0zskznLl5CJtYbClqVHALUxiAmqMuoWMPE6pIU1oJd1rwnHue7uia/exec";
+const url = "https://script.google.com/macros/s/AKfycby62APQM6iXtLD0zskznLl5CJtYbClqVHALUxiAmqMuoWMPE6pIU1oJd1rwnHue7uia/exec";
 
-  let convidados = [];
-  let convidadoAtual = null;
+let convidados = [];
+let confirmados = [];
+let convidadoAtual = null;
 
-  function normalizarTexto(texto) {
-    return (texto || "")
-      .toString()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .trim()
-      .toLowerCase();
+function normalizarTexto(texto) {
+  return texto.toLowerCase().trim();
+}
+
+async function carregarDados() {
+  const res = await fetch(url);
+  const data = await res.json();
+
+  convidados = data.convidados;
+  confirmados = data.confirmados;
+
+  console.log("Convidados:", convidados);
+  console.log("Confirmados:", confirmados);
+}
+
+function buscarConvidado() {
+  const busca = normalizarTexto(document.getElementById("buscaNome").value);
+
+  const encontrado = convidados.find(c =>
+    normalizarTexto(c.nome).includes(busca)
+  );
+
+  if (!encontrado) {
+    document.getElementById("resultadoBusca").innerHTML = "Nenhum convite encontrado.";
+    return;
   }
 
-  async function carregarConvidados() {
-    try {
-      const resposta = await fetch(url);
+  // 🔒 BLOQUEIO DE DUPLICIDADE
+  const jaConfirmou = confirmados.some(nome =>
+    normalizarTexto(nome) === normalizarTexto(encontrado.nome)
+  );
 
-      if (!resposta.ok) {
-        throw new Error("Falha ao buscar convidados");
-      }
-
-      const dados = await resposta.json();
-      convidados = dados;
-
-      console.log("Convidados carregados:", convidados);
-    } catch (erro) {
-      console.error("Erro ao carregar convidados:", erro);
-      document.getElementById("resultadoBusca").innerHTML =
-        "<p class='status-message error-message'>Não foi possível carregar a lista de convidados. Tente novamente em instantes.</p>";
-    }
-  }
-
-  function buscarConvidado() {
-    const busca = normalizarTexto(document.getElementById("buscaNome").value);
-
-    if (!busca) {
-      document.getElementById("resultadoBusca").innerHTML =
-        "<p class='status-message'>Digite seu nome para pesquisar.</p>";
-      return;
-    }
-
-    if (!convidados || convidados.length === 0) {
-      document.getElementById("resultadoBusca").innerHTML =
-        "<p class='status-message error-message'>A lista de convidados ainda não foi carregada. Atualize a página e tente novamente.</p>";
-      return;
-    }
-
-    const encontrado = convidados.find(c =>
-      normalizarTexto(c.nome).includes(busca)
-    );
-
-    if (!encontrado) {
-      document.getElementById("resultadoBusca").innerHTML =
-        "<p class='status-message'>Nenhum convite encontrado.</p>";
-      return;
-    }
-
-    convidadoAtual = encontrado;
-
-    let html = `
+  if (jaConfirmou) {
+    document.getElementById("resultadoBusca").innerHTML = `
       <div class="gift">
-        <p><strong>Convite encontrado</strong></p>
-
-        <label>Nome principal:</label>
-        <input type="text" value="${encontrado.nome}" disabled>
-
-        <label>Grupo de idade:</label>
-        <select id="idade1">
-          <option value="Adulto">Adulto</option>
-          <option value="Criança">Criança</option>
-        </select>
-
-        <label>Status de confirmação:</label>
-        <select id="presenca1">
-          <option value="">Selecione</option>
-          <option value="Comparecerá">Irá comparecer</option>
-          <option value="Não comparecerá">Não irá comparecer</option>
-        </select>
-    `;
-
-    const qtdAcompanhantes = Number(encontrado.acompanhantes) || 0;
-
-    if (qtdAcompanhantes > 0) {
-      for (let i = 1; i <= qtdAcompanhantes; i++) {
-        html += `
-          <hr>
-
-          <label>Acompanhante ${i}:</label>
-          <input type="text" value="Acompanhante ${i}" disabled>
-
-          <label>Grupo de idade:</label>
-          <select id="idade_acomp_${i}">
-            <option value="Adulto">Adulto</option>
-            <option value="Criança">Criança</option>
-          </select>
-
-          <label>Status de confirmação:</label>
-          <select id="presenca_acomp_${i}">
-            <option value="">Selecione</option>
-            <option value="Comparecerá">Irá comparecer</option>
-            <option value="Não comparecerá">Não irá comparecer</option>
-          </select>
-        `;
-      }
-
-      html += `
-        <p class="warning-message">
-          Você atingiu a quantidade máxima de convidados permitidos para este convite.
-        </p>
-      `;
-    }
-
-    html += `
-        <button class="button" type="button" onclick="enviarConfirmacao()">Enviar confirmação</button>
+        <p><strong>${encontrado.nome}</strong></p>
+        <p style="color:red;">Você já confirmou presença.</p>
       </div>
     `;
-
-    document.getElementById("resultadoBusca").innerHTML = html;
+    return;
   }
 
-  async function enviarConfirmacao() {
-    if (!convidadoAtual) {
-      alert("Nenhum convidado selecionado.");
-      return;
-    }
+  convidadoAtual = encontrado;
 
-    const presenca1 = document.getElementById("presenca1").value;
-    const idade1 = document.getElementById("idade1").value;
+  let html = `
+    <div class="gift">
+      <p><strong>${encontrado.nome}</strong></p>
 
-    if (!presenca1) {
-      alert("Selecione o status de confirmação do convidado principal.");
-      return;
-    }
+      <label>Grupo de idade:</label>
+      <select id="idade1">
+        <option>Adulto</option>
+        <option>Criança</option>
+      </select>
 
-    const qtdAcompanhantes = Number(convidadoAtual.acompanhantes) || 0;
-    const acompanhantes = [];
+      <label>Status:</label>
+      <select id="presenca1">
+        <option>Comparecerá</option>
+        <option>Não comparecerá</option>
+      </select>
+  `;
 
-    for (let i = 1; i <= qtdAcompanhantes; i++) {
-      const idade = document.getElementById(`idade_acomp_${i}`).value;
-      const presenca = document.getElementById(`presenca_acomp_${i}`).value;
+  if (encontrado.acompanhantes > 0) {
+    html += `
+      <h3>Acompanhante</h3>
 
-      if (!presenca) {
-        alert(`Selecione o status de confirmação do acompanhante ${i}.`);
-        return;
-      }
+      <select id="idade2">
+        <option>Adulto</option>
+        <option>Criança</option>
+      </select>
 
-      acompanhantes.push({
-        nome: `Acompanhante ${i}`,
-        idade,
-        presenca
-      });
-    }
+      <select id="presenca2">
+        <option>Comparecerá</option>
+        <option>Não comparecerá</option>
+      </select>
 
-    const payload = {
+      <p style="color:red;">Limite de convidados atingido.</p>
+    `;
+  }
+
+  html += `<button class="button" onclick="enviarConfirmacao()">Enviar</button></div>`;
+
+  document.getElementById("resultadoBusca").innerHTML = html;
+}
+
+function enviarConfirmacao() {
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify({
       nomePrincipal: convidadoAtual.nome,
-      acompanhante: acompanhantes.map(a => a.nome).join(", "),
-      idade1: idade1,
-      presenca1: presenca1,
-      idade2: acompanhantes.map(a => a.idade).join(", "),
-      presenca2: acompanhantes.map(a => a.presenca).join(", ")
-    };
+      acompanhante: "",
+      idade1: document.getElementById("idade1").value,
+      presenca1: document.getElementById("presenca1").value,
+      idade2: document.getElementById("idade2")?.value || "",
+      presenca2: document.getElementById("presenca2")?.value || ""
+    })
+  }).then(() => {
+    document.getElementById("resultadoBusca").innerHTML =
+      "<p>Confirmação enviada!</p>";
+  });
+}
 
-    try {
-      const resposta = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify(payload)
-      });
-
-      if (!resposta.ok) {
-        throw new Error("Falha ao enviar confirmação");
-      }
-
-      document.getElementById("resultadoBusca").innerHTML = `
-        <div class="gift" style="text-align:center;">
-          <p class="success-message"><strong>Confirmação enviada com sucesso.</strong></p>
-          <p>Obrigada por confirmar sua presença.</p>
-        </div>
-      `;
-    } catch (erro) {
-      console.error("Erro ao enviar confirmação:", erro);
-      alert("Erro ao enviar confirmação. Tente novamente.");
-    }
-  }
-
-  // Contagem regressiva com dias, horas, minutos e segundos
-  const dataCasamento = new Date("Aug 15, 2026 15:00:00").getTime();
-
-  function atualizarContagem() {
-    const agora = new Date().getTime();
-    const diferenca = dataCasamento - agora;
-
-    const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
-    const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
-
-    document.getElementById("days").textContent = dias >= 0 ? dias : 0;
-    document.getElementById("hours").textContent = horas >= 0 ? horas : 0;
-    document.getElementById("minutes").textContent = minutos >= 0 ? minutos : 0;
-    document.getElementById("seconds").textContent = segundos >= 0 ? segundos : 0;
-  }
-
-  atualizarContagem();
-  setInterval(atualizarContagem, 1000);
-
-  // Copiar PIX
-  function copiarPix() {
-    navigator.clipboard.writeText("40993446817");
-    alert("Chave PIX copiada!");
-  }
-
-  carregarConvidados();
+carregarDados();
 </script>
-
-</body>
-</html>
