@@ -1,49 +1,191 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guest Confirmation System</title>
-    <script>
-        // Function to dynamically generate form fields
-        function generateForm() {
-            const form = document.getElementById('guestForm');
-            form.innerHTML = ''; // Clear existing fields
-            const guestCount = document.getElementById('guestCount').value;
-            for (let i = 0; i < guestCount; i++) {
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.placeholder = `Guest ${i + 1} Name`;
-                input.name = `guest${i + 1}`;
-                form.appendChild(input);
-            }
-        }
+  <meta charset="UTF-8">
+  <title>Marina e Victor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        // Function to normalize text input
-        function normalizeText(text) {
-            return text.trim().toLowerCase();
-        }
+  <style>
+    * { scroll-behavior: smooth; }
 
-        // Function to handle form submission and send data to Google Sheets
-        async function handleFormSubmit(event) {
-            event.preventDefault();
-            const formData = new FormData(event.target);
-            const data = Object.fromEntries(formData);
-            const normalizedData = Object.fromEntries(Object.entries(data).map(([key, value]) => [key, normalizeText(value)]));
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #f5f1ec 0%, #faf8f3 100%);
+      color: #4a3f35;
+      text-align: center;
+    }
 
-            // Code to send `normalizedData` to Google Sheets goes here
-            console.log(normalizedData);
-            alert('Guest data has been prepared.');
-        }
-    </script>
+    .container {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #8c3b2e, #c97c63);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    h2 {
+      margin-top: 40px;
+      font-weight: normal;
+      color: #8c3b2e;
+    }
+
+    .button {
+      background-color: #8c3b2e;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+      border-radius: 4px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+  </style>
 </head>
+
 <body>
-    <h1>Enhanced Guest Confirmation System</h1>
-    <label for="guestCount">Number of Guests:</label>
-    <input type="number" id="guestCount" min="1" onchange="generateForm()">
-    <form id="guestForm" onsubmit="handleFormSubmit(event)">
-        <!-- Dynamic fields will be added here -->
-    </form>
-    <button type="submit" form="guestForm">Submit</button>
+
+<div class="container">
+
+  <h1>Marina e Victor</h1>
+
+  <p>
+    É com muita alegria que convidamos vocês para o nosso casamento.<br><br>
+    Reserve a nossa data: <b>15/08/2026</b>.<br><br>
+    A presença de vocês é muito importante para nós!<br><br>
+    Em breve, enviaremos mais detalhes.<br><br>
+    Com carinho, Marina e Victor.
+  </p>
+
+  <h2>📅 Informações</h2>
+  <p>
+    <b>Data:</b> 15 de agosto de 2026<br>
+    <b>Horário:</b> 15h<br>
+    <b>Local:</b> Haras Vila Real - Embu das Artes
+  </p>
+
+  <h2>✔ Confirme sua presença</h2>
+
+  <input type="text" id="buscaNome" placeholder="Digite seu nome">
+  <button class="button" onclick="buscarConvidado()">Pesquisar</button>
+
+  <div id="resultadoBusca"></div>
+
+</div>
+
+<script>
+
+const convidados = [
+  { nome: "Tales Furtado", acompanhantes: 1 },
+  { nome: "Victor Galvão", acompanhantes: 1 }
+];
+
+let convidadoAtual = null;
+
+function buscarConvidado() {
+  const busca = document.getElementById("buscaNome").value.toLowerCase();
+
+  const encontrado = convidados.find(c =>
+    c.nome.toLowerCase().includes(busca)
+  );
+
+  if (!encontrado) {
+    document.getElementById("resultadoBusca").innerHTML = "Nenhum convite encontrado.";
+    return;
+  }
+
+  convidadoAtual = encontrado;
+
+  let html = `
+    <div class="box">
+    <p><b>${encontrado.nome}</b></p>
+
+    <h3>Convidado principal</h3>
+
+    <select id="idade1">
+      <option>Adulto</option>
+      <option>Criança</option>
+    </select>
+
+    <select id="presenca1">
+      <option>Comparecerá</option>
+      <option>Não comparecerá</option>
+    </select>
+  `;
+
+  if (encontrado.acompanhantes > 0) {
+    html += `
+      <h3>Acompanhante</h3>
+
+      <input type="text" id="acompanhante" placeholder="Nome do acompanhante">
+
+      <select id="idade2">
+        <option>Adulto</option>
+        <option>Criança</option>
+      </select>
+
+      <select id="presenca2">
+        <option>Comparecerá</option>
+        <option>Não comparecerá</option>
+      </select>
+
+      <p style="color:red;">Você atingiu a quantidade máxima de convidados.</p>
+    `;
+  }
+
+  html += `<br><button class="button" onclick="enviarConfirmacao()">Enviar confirmação</button></div>`;
+
+  document.getElementById("resultadoBusca").innerHTML = html;
+}
+
+function enviarConfirmacao() {
+  const url = "https://script.google.com/macros/s/AKfycby62APQM6iXtLD0zskznLl5CJtYbClqVHALUxiAmqMuoWMPE6pIU1oJd1rwnHue7uia/exec";
+
+  const data = {
+    nomePrincipal: convidadoAtual.nome,
+    acompanhante: document.getElementById("acompanhante")?.value || "",
+    idade1: document.getElementById("idade1").value,
+    presenca1: document.getElementById("presenca1").value,
+    idade2: document.getElementById("idade2")?.value || "",
+    presenca2: document.getElementById("presenca2")?.value || ""
+  };
+
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(() => {
+    document.getElementById("resultadoBusca").innerHTML =
+      "<div class='box'><p>Confirmação enviada com sucesso!</p></div>";
+  })
+  .catch(() => {
+    alert("Erro ao enviar confirmação.");
+  });
+}
+
+</script>
+
 </body>
 </html>
