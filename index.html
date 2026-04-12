@@ -78,10 +78,6 @@
       margin-top: 5px;
     }
 
-    .highlight {
-      color: #8c3b2e;
-    }
-
     .button {
       background-color: #8c3b2e;
       color: white;
@@ -104,7 +100,6 @@
       margin-top: 10px;
       border: 1px solid #ddd;
       border-radius: 4px;
-      box-sizing: border-box;
       font-size: 16px;
       background: white;
     }
@@ -128,9 +123,10 @@
       margin: 5px;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      object-fit: cover;
     }
 
-    .gift {
+    .card {
       border: 1px solid #ddd;
       padding: 20px;
       margin: 20px auto;
@@ -246,19 +242,19 @@
 
   <div class="search-box">
     <input type="text" id="buscaNome" placeholder="Digite seu nome">
-    <button class="button" onclick="buscarConvidado()">Pesquisar</button>
+    <button class="button" type="button" onclick="buscarConvidado()">Pesquisar</button>
   </div>
 
   <div id="resultadoBusca"></div>
 
   <h2>🎁 Lista de presentes</h2>
 
-  <div class="gift" style="text-align:center;">
+  <div class="card" style="text-align:center;">
     <p>Jantar romântico - R$200</p>
     <button class="button" onclick="copiarPix()">Copiar chave PIX</button>
   </div>
 
-  <div class="gift" style="text-align:center;">
+  <div class="card" style="text-align:center;">
     <p>Lua de mel - R$500</p>
     <button class="button" onclick="copiarPix()">Copiar chave PIX</button>
   </div>
@@ -279,6 +275,7 @@
   const url = "https://script.google.com/macros/s/AKfycby62APQM6iXtLD0zskznLl5CJtYbClqVHALUxiAmqMuoWMPE6pIU1oJd1rwnHue7uia/exec";
 
   let convidados = [];
+  let confirmados = [];
   let convidadoAtual = null;
 
   function normalizarTexto(texto) {
@@ -290,20 +287,23 @@
       .toLowerCase();
   }
 
-  async function carregarConvidados() {
+  async function carregarDados() {
     try {
       const resposta = await fetch(url);
 
       if (!resposta.ok) {
-        throw new Error("Falha ao buscar convidados");
+        throw new Error("Falha ao buscar dados");
       }
 
       const dados = await resposta.json();
-      convidados = dados;
+
+      convidados = Array.isArray(dados.convidados) ? dados.convidados : [];
+      confirmados = Array.isArray(dados.confirmados) ? dados.confirmados : [];
 
       console.log("Convidados carregados:", convidados);
+      console.log("Confirmados carregados:", confirmados);
     } catch (erro) {
-      console.error("Erro ao carregar convidados:", erro);
+      console.error("Erro ao carregar dados:", erro);
       document.getElementById("resultadoBusca").innerHTML =
         "<p class='status-message error-message'>Não foi possível carregar a lista de convidados. Tente novamente em instantes.</p>";
     }
@@ -318,7 +318,7 @@
       return;
     }
 
-    if (!convidados || convidados.length === 0) {
+    if (!convidados.length) {
       document.getElementById("resultadoBusca").innerHTML =
         "<p class='status-message error-message'>A lista de convidados ainda não foi carregada. Atualize a página e tente novamente.</p>";
       return;
@@ -334,10 +334,24 @@
       return;
     }
 
+    const jaConfirmou = confirmados.some(nome =>
+      normalizarTexto(nome) === normalizarTexto(encontrado.nome)
+    );
+
+    if (jaConfirmou) {
+      document.getElementById("resultadoBusca").innerHTML = `
+        <div class="card" style="text-align:center;">
+          <p><strong>${encontrado.nome}</strong></p>
+          <p class="warning-message">Este convite já teve a presença confirmada.</p>
+        </div>
+      `;
+      return;
+    }
+
     convidadoAtual = encontrado;
 
     let html = `
-      <div class="gift">
+      <div class="card">
         <p><strong>Convite encontrado</strong></p>
 
         <label>Nome principal:</label>
@@ -452,8 +466,10 @@
         throw new Error("Falha ao enviar confirmação");
       }
 
+      confirmados.push(convidadoAtual.nome);
+
       document.getElementById("resultadoBusca").innerHTML = `
-        <div class="gift" style="text-align:center;">
+        <div class="card" style="text-align:center;">
           <p class="success-message"><strong>Confirmação enviada com sucesso.</strong></p>
           <p>Obrigada por confirmar sua presença.</p>
         </div>
@@ -464,7 +480,6 @@
     }
   }
 
-  // Contagem regressiva com dias, horas, minutos e segundos
   const dataCasamento = new Date("Aug 15, 2026 15:00:00").getTime();
 
   function atualizarContagem() {
@@ -485,13 +500,12 @@
   atualizarContagem();
   setInterval(atualizarContagem, 1000);
 
-  // Copiar PIX
   function copiarPix() {
     navigator.clipboard.writeText("40993446817");
     alert("Chave PIX copiada!");
   }
 
-  carregarConvidados();
+  carregarDados();
 </script>
 
 </body>
