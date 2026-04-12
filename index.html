@@ -431,43 +431,43 @@
         <input type="text" value="${encontrado.nome}" disabled>
 
         <label>Grupo de idade:</label>
-        <select id="idade1">
+        <select id="idadePrincipal">
           <option value="Adulto">Adulto</option>
           <option value="Criança">Criança</option>
         </select>
 
         <label>Status de confirmação:</label>
-        <select id="presenca1">
+        <select id="presencaPrincipal">
           <option value="">Selecione</option>
           <option value="Comparecerá">Irá comparecer</option>
           <option value="Não comparecerá">Não irá comparecer</option>
         </select>
     `;
 
-    const qtdAcompanhantes = Number(encontrado.acompanhantes) || 0;
+    if (Array.isArray(encontrado.acompanhantes) && encontrado.acompanhantes.length > 0) {
+      encontrado.acompanhantes.forEach((nomeAcompanhante, index) => {
+        const numero = index + 1;
 
-    if (qtdAcompanhantes > 0) {
-      for (let i = 1; i <= qtdAcompanhantes; i++) {
         html += `
           <hr>
 
-          <label>Acompanhante ${i}:</label>
-          <input type="text" value="Acompanhante ${i}" disabled>
+          <label>Acompanhante ${numero}:</label>
+          <input type="text" value="${nomeAcompanhante}" disabled>
 
           <label>Grupo de idade:</label>
-          <select id="idade_acomp_${i}">
+          <select id="idadeAcompanhante${numero}">
             <option value="Adulto">Adulto</option>
             <option value="Criança">Criança</option>
           </select>
 
           <label>Status de confirmação:</label>
-          <select id="presenca_acomp_${i}">
+          <select id="presencaAcompanhante${numero}">
             <option value="">Selecione</option>
             <option value="Comparecerá">Irá comparecer</option>
             <option value="Não comparecerá">Não irá comparecer</option>
           </select>
         `;
-      }
+      });
 
       html += `
         <p class="warning-message">
@@ -490,40 +490,43 @@
       return;
     }
 
-    const presenca1 = document.getElementById("presenca1").value;
-    const idade1 = document.getElementById("idade1").value;
+    const presencaPrincipal = document.getElementById("presencaPrincipal").value;
+    const idadePrincipal = document.getElementById("idadePrincipal").value;
 
-    if (!presenca1) {
+    if (!presencaPrincipal) {
       alert("Selecione o status de confirmação do convidado principal.");
       return;
     }
 
-    const qtdAcompanhantes = Number(convidadoAtual.acompanhantes) || 0;
-    const acompanhantes = [];
+    const nomesAcompanhantes = [];
+    const idadesAcompanhantes = [];
+    const presencasAcompanhantes = [];
 
-    for (let i = 1; i <= qtdAcompanhantes; i++) {
-      const idade = document.getElementById(`idade_acomp_${i}`).value;
-      const presenca = document.getElementById(`presenca_acomp_${i}`).value;
+    if (Array.isArray(convidadoAtual.acompanhantes) && convidadoAtual.acompanhantes.length > 0) {
+      for (let i = 0; i < convidadoAtual.acompanhantes.length; i++) {
+        const numero = i + 1;
+        const nome = convidadoAtual.acompanhantes[i];
+        const idade = document.getElementById(`idadeAcompanhante${numero}`).value;
+        const presenca = document.getElementById(`presencaAcompanhante${numero}`).value;
 
-      if (!presenca) {
-        alert(`Selecione o status de confirmação do acompanhante ${i}.`);
-        return;
+        if (!presenca) {
+          alert(`Selecione o status de confirmação de ${nome}.`);
+          return;
+        }
+
+        nomesAcompanhantes.push(nome);
+        idadesAcompanhantes.push(idade);
+        presencasAcompanhantes.push(presenca);
       }
-
-      acompanhantes.push({
-        nome: `Acompanhante ${i}`,
-        idade,
-        presenca
-      });
     }
 
     const payload = {
       nomePrincipal: convidadoAtual.nome,
-      acompanhante: acompanhantes.map(a => a.nome).join(", "),
-      idade1: idade1,
-      presenca1: presenca1,
-      idade2: acompanhantes.map(a => a.idade).join(", "),
-      presenca2: acompanhantes.map(a => a.presenca).join(", ")
+      acompanhantes: nomesAcompanhantes.join(", "),
+      idadePrincipal: idadePrincipal,
+      presencaPrincipal: presencaPrincipal,
+      idadesAcompanhantes: idadesAcompanhantes.join(", "),
+      presencasAcompanhantes: presencasAcompanhantes.join(", ")
     };
 
     try {
