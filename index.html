@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Marina e Victor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background-color: #f5f1ec;
+      color: #4a3f35;
+      text-align: center;
+    }
+
+    .container {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin-top: 40px;
+      font-weight: normal;
+    }
+
+    .highlight {
+      color: #8c3b2e;
+    }
+
+    .button {
+      background-color: #8c3b2e;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    .gallery img {
+      width: 30%;
+      margin: 5px;
+      border-radius: 8px;
+    }
+
+    .gift {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 10px;
+      border-radius: 8px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Marina e Victor</h1>
+
+  <p>
+    É com muita alegria que convidamos vocês para o nosso casamento.<br><br>
+    Reserve a nossa data: <b>15/08/2026</b>.<br><br>
+    A presença de vocês é muito importante para nós!<br><br>
+    Em breve, enviaremos mais detalhes.<br><br>
+    Com carinho, Marina e Victor.
+  </p>
+
+  <h2>📅 Informações</h2>
+  <p>
+    <b>Data:</b> 15 de agosto de 2026<br>
+    <b>Horário:</b> 15h<br>
+    <b>Local:</b> Haras Vila Real - Embu das Artes
+  </p>
+
+  <h2>⏳ Contagem regressiva</h2>
+  <p id="countdown"></p>
+
+  <h2>📸 Fotos</h2>
+  <div class="gallery">
+    <img src="https://via.placeholder.com/200">
+    <img src="https://via.placeholder.com/200">
+    <img src="https://via.placeholder.com/200">
+  </div>
+
+  <h2>✔ Confirmação de presença</h2>
+
+  <form id="rsvpForm">
+    <input type="text" placeholder="Seu nome" required>
+    
+    <select required>
+      <option value="">Você irá?</option>
+      <option>Sim</option>
+      <option>Não</option>
+    </select>
+
+    <button class="button">Enviar</button>
+  </form>
+
+  <h2>🎁 Lista de presentes</h2>
+
+  <div class="gift">
+    <p>Jantar romântico - R$200</p>
+    <button class="button" onclick="copiarPix()">Copiar chave PIX</button>
+  </div>
+
+  <div class="gift">
+    <p>Lua de mel - R$500</p>
+    <button class="button" onclick="copiarPix()">Copiar chave PIX</button>
+  </div>
+
+  <h2>👗 Dress code</h2>
+  <p>Esporte fino para um dia de frio</p>
+
+  <h2>ℹ️ Observações</h2>
+  <p>
+    Estacionamento no local<br>
+    Dicas de hospedagem (em breve)<br>
+    Horário de início: 15h
+  </p>
+
+</div>
+
+<script>
+  // Contagem regressiva
+  const dataCasamento = new Date("Aug 15, 2026 15:00:00").getTime();
+
+  setInterval(() => {
+    const agora = new Date().getTime();
+    const diferenca = dataCasamento - agora;
+
+    const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+
+    document.getElementById("countdown").innerHTML =
+      dias + " dias restantes";
+  }, 1000);
+
+  // Copiar PIX
+  function copiarPix() {
+    navigator.clipboard.writeText("40993446817");
+    alert("Chave PIX copiada!");
+  }
+
+  // RSVP (simples)
+  document.getElementById("rsvpForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    alert("Confirmação enviada! (vamos integrar com email depois)");
+  });
+
+</script>
+
+</body>
+</html>
