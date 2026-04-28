@@ -236,7 +236,23 @@
     }
 
     .section.soft {
-      background: linear-gradient(180deg, rgba(248,243,237,0.96), rgba(243,236,228,0.98));
+      position: relative;
+      background: url("./estampa-vinho.png") center/cover no-repeat;
+    }
+
+    .section.soft::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+    
+      background: rgba(245, 239, 228, 0.88); /* bege suave */
+    
+      z-index: 1;
+    }
+    
+    .section.soft > * {
+      position: relative;
+      z-index: 2;
     }
 
     .section.alt {
