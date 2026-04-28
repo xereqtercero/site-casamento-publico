@@ -10,7 +10,26 @@
       box-sizing: border-box;
       scroll-behavior: smooth;
     }
-
+    
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #efe6d6; /* ou a cor que você já usa */
+      overflow: hidden;
+    }
+    
+    .hero-svg {
+      width: min(90vw, 1200px);
+    }
+    
+    .hero-svg img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
     @font-face {
       font-family: "SangBleuKingdom";
       src: url("./SangBleuKingdom-Regular.ttf") format("truetype");
