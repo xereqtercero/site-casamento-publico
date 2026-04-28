@@ -119,21 +119,17 @@
     }
     
     .hero::before {
-      content: "";
+      content: '';
       position: absolute;
-      left: -80px;
-      bottom: -50px;
+      inset: 0;
+      pointer-events: none;
     
-      width: min(120vw, 2100px);
-      height: min(150vh, 1350px);
-    
-      background: url("./fundo-tatu3.png") no-repeat left bottom;
+      background-image: url('Marina.svg');
+      background-repeat: no-repeat;
+      background-position: left center;
       background-size: contain;
     
-      opacity: 1.0;
-    
-      pointer-events: none;
-      z-index: 1;
+      opacity: 1.0; /* ajuste fino aqui */
     }
     
     
