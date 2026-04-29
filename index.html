@@ -10,6 +10,58 @@
       box-sizing: border-box;
       scroll-behavior: smooth;
     }
+
+    .countdown-section {
+      background-image: url("fundo_pag_2.png");
+      background-size: cover;
+      background-position: center;
+      padding: 120px 20px;
+      text-align: center;
+    }
+    
+    .countdown-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 80px;
+    }
+    
+    .count-left p,
+    .count-right p {
+      font-family: "Quattrocento", serif;
+      color: #5f5239;
+      font-size: 20px;
+      line-height: 1.6;
+    }
+    
+    .count-birds {
+      width: clamp(120px, 12vw, 180px);
+      opacity: 0.9;
+    }
+    
+    .count-subtitle {
+      margin-top: 60px;
+      font-family: "Roboto", sans-serif;
+      color: #2d2b25;
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+    
+    .count-days {
+      margin-top: 40px;
+      font-family: "Quattrocento", serif;
+      color: #5f5239;
+    }
+    
+    .count-days span {
+      font-size: 48px;
+    }
+    
+    .count-days small {
+      display: block;
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
     
     .hero {
       display: flex;
@@ -991,44 +1043,33 @@
           </div>
         </section>
 
-        <section class="section alt">
-          <div class="section-plain">
-            <div class="section-head">
-              <span class="eyebrow">Presentes</span>
-              <h2 class="section-title">Um gesto de carinho</h2>
-              <p class="section-intro">
-                Escolha um presente simbólico. Ao clicar, a chave PIX será copiada.
-              </p>
+        <section class="countdown-section">
+        
+          <div class="countdown-content">
+        
+            <div class="count-left">
+              <p>UM DIA PARA<br>CELEBRAR OS<br>ENCONTROS</p>
             </div>
-
-            <div class="gift-grid">
-              <div class="gift">
-                <h3 class="gift-title">Jantar romântico</h3>
-                <p class="gift-price">R$ 200</p>
-                <button class="button secondary" type="button" onclick="pix()">Copiar PIX</button>
-              </div>
-
-              <div class="gift">
-                <h3 class="gift-title">Lua de mel</h3>
-                <p class="gift-price">R$ 500</p>
-                <button class="button secondary" type="button" onclick="pix()">Copiar PIX</button>
-              </div>
-
-              <div class="gift">
-                <h3 class="gift-title">Brinde especial</h3>
-                <p class="gift-price">R$ 150</p>
-                <button class="button secondary" type="button" onclick="pix()">Copiar PIX</button>
-              </div>
-
-              <div class="gift">
-                <h3 class="gift-title">Nova casa</h3>
-                <p class="gift-price">R$ 350</p>
-                <button class="button secondary" type="button" onclick="pix()">Copiar PIX</button>
-              </div>
+        
+            <img src="passaros_2.png" class="count-birds" alt="Pássaros">
+        
+            <div class="count-right">
+              <p>E A NOSSA<br>SORTE POR<br>TER VOCÊS</p>
             </div>
+        
           </div>
+        
+          <p class="count-subtitle">
+            ESTAMOS CONTANDO OS DIAS PARA INICIAR ESSE NOVO CAPÍTULO
+          </p>
+        
+          <div class="count-days">
+            <span id="days">0</span>
+            <small>DIAS</small>
+          </div>
+        
         </section>
-
+        
         <section class="section">
           <div class="section-plain">
             <div class="section-head">
@@ -1302,10 +1343,17 @@
     const minutos = Math.max(0, Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
     const segundos = Math.max(0, Math.floor((diff % (1000 * 60)) / 1000));
 
-    document.getElementById("dias").innerText = dias;
-    document.getElementById("horas").innerText = horas;
-    document.getElementById("minutos").innerText = minutos;
-    document.getElementById("segundos").innerText = segundos;
+const data = new Date("Aug 15, 2026").getTime();
+    
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = data - now;
+    
+      const dias = Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
+    
+      document.getElementById("days").innerText = dias;
+    
+    }, 1000 * 60 * 60);
   }, 1000);
 
   carregar();
