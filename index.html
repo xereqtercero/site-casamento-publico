@@ -965,40 +965,33 @@
           </div>
         </section>
 
-        <section class="section alt">
-          <div class="section-plain countdown-wrap">
-            <div class="section-head">
-              <span class="eyebrow">Contagem regressiva</span>
-              <h2 class="section-title">Faltam poucos capítulos para esse dia</h2>
-              <p class="section-intro">
-                Estamos contando os dias para viver esse momento ao lado de vocês.
-              </p>
+        <section class="countdown-section">
+        
+          <div class="countdown-content">
+        
+            <div class="count-left">
+              <p>UM DIA PARA<br>CELEBRAR OS<br>ENCONTROS</p>
             </div>
-
-            <div class="countdown">
-              <div class="count-item">
-                <span class="count-number" id="dias">0</span>
-                <span class="count-label">Dias</span>
-              </div>
-
-              <div class="count-item">
-                <span class="count-number" id="horas">0</span>
-                <span class="count-label">Horas</span>
-              </div>
-
-              <div class="count-item">
-                <span class="count-number" id="minutos">0</span>
-                <span class="count-label">Minutos</span>
-              </div>
-
-              <div class="count-item">
-                <span class="count-number" id="segundos">0</span>
-                <span class="count-label">Segundos</span>
-              </div>
+        
+            <img src="passaros_2.png" class="count-birds" alt="Pássaros">
+        
+            <div class="count-right">
+              <p>E A NOSSA<br>SORTE POR<br>TER VOCÊS</p>
             </div>
+        
           </div>
+        
+          <p class="count-subtitle">
+            ESTAMOS CONTANDO OS DIAS PARA INICIAR ESSE NOVO CAPÍTULO
+          </p>
+        
+          <div class="count-days">
+            <span id="days">0</span>
+            <small>DIAS</small>
+          </div>
+        
         </section>
-
+       
         <section class="section">
           <div class="section-plain">
             <div class="section-head">
@@ -1043,32 +1036,7 @@
           </div>
         </section>
 
-        <section class="countdown-section">
         
-          <div class="countdown-content">
-        
-            <div class="count-left">
-              <p>UM DIA PARA<br>CELEBRAR OS<br>ENCONTROS</p>
-            </div>
-        
-            <img src="passaros_2.png" class="count-birds" alt="Pássaros">
-        
-            <div class="count-right">
-              <p>E A NOSSA<br>SORTE POR<br>TER VOCÊS</p>
-            </div>
-        
-          </div>
-        
-          <p class="count-subtitle">
-            ESTAMOS CONTANDO OS DIAS PARA INICIAR ESSE NOVO CAPÍTULO
-          </p>
-        
-          <div class="count-days">
-            <span id="days">0</span>
-            <small>DIAS</small>
-          </div>
-        
-        </section>
         
         <section class="section">
           <div class="section-plain">
@@ -1333,28 +1301,21 @@
   }
 
   const data = new Date("Aug 15, 2026 15:00:00").getTime();
-
-  setInterval(() => {
-    const now = new Date().getTime();
-    const diff = data - now;
-
-    const dias = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
-    const horas = Math.max(0, Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-    const minutos = Math.max(0, Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
-    const segundos = Math.max(0, Math.floor((diff % (1000 * 60)) / 1000));
-
-const data = new Date("Aug 15, 2026").getTime();
     
-    setInterval(() => {
+    function atualizarContador() {
       const now = new Date().getTime();
       const diff = data - now;
     
       const dias = Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
     
-      document.getElementById("days").innerText = dias;
+      const daysEl = document.getElementById("days");
+      if (daysEl) {
+        daysEl.innerText = dias;
+      }
+    }
     
-    }, 1000 * 60 * 60);
-  }, 1000);
+    atualizarContador();
+    setInterval(atualizarContador, 1000 * 60 * 60);
 
   carregar();
 </script>
