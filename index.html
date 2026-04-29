@@ -195,12 +195,18 @@
     }
     
     .hero-date {
-      margin-top: 10px;
-      font-family: "Quattrocento", "Times New Roman", serif;
-      font-size: clamp(24px, 2.5vw, 38px);
+      position: absolute;
+      left: 50%;
+      top: 72%; /* controla altura */
+      transform: translate(-50%, -50%);
+      
+      font-family: "Quattrocento", serif;
+      font-size: clamp(18px, 2vw, 28px);
+      letter-spacing: 0.08em;
       color: #FAF1E1;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+      
+      z-index: 3;
+      white-space: nowrap;
     }
     
     .hero-birds {
@@ -836,6 +842,7 @@
         <div class="hero-names">
           <div class="hero-amp-bg">&amp;</div>
           <div class="hero-name-line">MARINA&nbsp;&nbsp;&nbsp;&nbsp;VICTOR</div>
+          <div class="hero-date">15 DE AGOSTO DE 2026</div>
         </div>
     
         <div class="hero-date">15 DE AGOSTO DE 2026</div>
