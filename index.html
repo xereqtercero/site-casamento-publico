@@ -145,7 +145,7 @@
     
     .hero-card {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       width: min(980px, 100%);
       text-align: center;
       padding: 0;
@@ -168,7 +168,7 @@
     
     .hero-name-line {
       position: relative;
-      z-index: 2;
+      z-index: 4;
       font-family: "Careny", "Times New Roman", serif;
       font-size: clamp(62px, 7.8vw, 118px);
       font-weight: 400;
@@ -181,7 +181,7 @@
     
     .hero-amp-bg {
       position: absolute;
-      z-index: 1;
+      z-index: 2;
       left: 53%;
       top: 15%;
       transform: translate(-50%, -50%);
@@ -205,20 +205,21 @@
       letter-spacing: 0.06em;
       color: #FAF1E1;
       
-      z-index: 3;
+      z-index: 4;
       white-space: nowrap;
     }
     
     .hero-birds {
       position: absolute;
       left: 50%;
-      top: 68%;
+      top: 67%;
       transform: translate(-50%, -50%);
     
-      width: clamp(110px, 11vw, 160px);
+      width: clamp(150px, 13vw, 210px);
       opacity: 0.65;
     
-      z-index: 0; /* importante ↓ */
+      z-index: 2;
+      pointer-events: none;
     }
     
     .hero-birds img {
@@ -852,10 +853,10 @@
           <div class="hero-name-line">MARINA&nbsp;&nbsp;&nbsp;&nbsp;VICTOR</div>
           <div class="hero-date">15 DE AGOSTO DE 2026</div>
         </div>
+      </div>
     
-        <div class="hero-birds">
-          <img src="./passaros_1.png" alt="">
-        </div>
+      <div class="hero-birds">
+        <img src="./passaros_1.png" alt="">
       </div>
     
       <div class="hero-place">
