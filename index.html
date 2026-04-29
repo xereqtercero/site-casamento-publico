@@ -12,30 +12,43 @@
     }
 
     .countdown-section {
+      position: relative;
+      min-height: 100vh;
       background-image: url("fundo_pag_2.png");
       background-size: cover;
       background-position: center;
-      padding: 120px 20px;
+      padding: 0;
       text-align: center;
     }
     
     .countdown-content {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 80px;
+      position: relative;
+      height: 48vh;
     }
     
-    .count-left p,
-    .count-right p {
-      font-family: "Quattrocento", serif;
-      color: #5f5239;
-      font-size: 20px;
-      line-height: 1.6;
+    .count-left,
+    .count-right,
+    .count-birds {
+      position: absolute;
+    }
+    
+    .count-left {
+      left: 28%;
+      top: 52%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .count-right {
+      right: 28%;
+      top: 52%;
+      transform: translate(50%, -50%);
     }
     
     .count-birds {
-      width: clamp(480px, 48vw, 720px);
+      left: 50%;
+      top: 52%;
+      transform: translate(-50%, -50%);
+      width: clamp(360px, 32vw, 520px);
       opacity: 0.9;
     }
     
