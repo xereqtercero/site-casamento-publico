@@ -210,9 +210,15 @@
     }
     
     .hero-birds {
-      width: clamp(56px, 7vw, 90px);
-      margin: 86px auto 0;
+      position: absolute;
+      left: 50%;
+      top: 68%; /* controla altura */
+      transform: translate(-50%, -50%);
+      
+      width: clamp(90px, 10vw, 140px); /* aumentei aqui */
       opacity: 0.72;
+    
+      z-index: 2;
     }
     
     .hero-birds img {
