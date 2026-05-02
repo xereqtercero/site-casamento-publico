@@ -11,6 +11,85 @@
       scroll-behavior: smooth;
     }
 
+    .details-visual-section {
+      min-height: 100vh;
+      background: url("Fundo_pag_3.png") center/cover no-repeat;
+      padding: 90px 80px;
+      color: #FAF1E1;
+    }
+    
+    .details-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    
+    .details-main-title {
+      margin: 0 0 70px;
+      font-family: "Quattrocento", serif;
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 400;
+      color: #FAF1E1;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+    
+    .details-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 90px;
+      align-items: start;
+    }
+    
+    .program-block h3,
+    .dress-block h3 {
+      margin: 0 0 34px;
+      font-family: "RobotoMono", monospace;
+      font-size: 18px;
+      font-weight: 400;
+      color: #FAF1E1;
+      letter-spacing: 0.12em;
+    }
+    
+    .program-item {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 22px;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    
+    .program-item img {
+      width: 72px;
+      height: auto;
+      opacity: 0.92;
+    }
+    
+    .program-item strong {
+      display: block;
+      font-family: "Quattrocento", serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: #CDC1AB;
+      line-height: 1;
+    }
+    
+    .program-item span {
+      display: block;
+      margin-top: 6px;
+      font-family: "RobotoMono", monospace;
+      font-size: 14px;
+      color: #CDC1AB;
+      line-height: 1.5;
+    }
+    
+    .dress-block p {
+      margin: 0 0 18px;
+      font-family: "RobotoMono", monospace;
+      font-size: 14px;
+      line-height: 1.75;
+      color: #CDC1AB;
+    }
+
     .countdown-section {
       position: relative;
       min-height: 100vh;
@@ -937,7 +1016,60 @@
 
     <main class="main-content">
       <div class="section-panel">
-
+        <section class="details-visual-section">
+          <div class="details-inner">
+        
+            <h2 class="details-main-title">TUDO O QUE VOCÊ PRECISA SABER</h2>
+        
+            <div class="details-grid">
+        
+              <div class="program-block">
+                <h3>PROGRAMAÇÃO</h3>
+        
+                <div class="program-item">
+                  <img src="semente.png" alt="">
+                  <div><strong>15:00</strong><span>Início da celebração</span></div>
+                </div>
+        
+                <div class="program-item">
+                  <img src="aliancas.png" alt="">
+                  <div><strong>15:30</strong><span>Cerimônia</span></div>
+                </div>
+        
+                <div class="program-item">
+                  <img src="brinde.png" alt="">
+                  <div><strong>16:15</strong><span>Música, comida e bebedeira</span></div>
+                </div>
+        
+                <div class="program-item">
+                  <img src="the_end.png" alt="">
+                  <div><strong>00:00</strong><span>Fim (ou começo do after?)</span></div>
+                </div>
+              </div>
+        
+              <div class="dress-block">
+                <h3>DRESS CODE</h3>
+                <p>
+                  Esporte fino de inverno. Venha para nossa festa no jardim
+                  com looks elegantes e em tecidos que te mantenham aquecido.
+                  Estaremos cercados de Mata Atlântica em agosto, então se proteja da friagem.
+                </p>
+                <p>
+                  Mulheres: Venha à vontade e livre pra curtir, se sentindo linda!
+                  Se vier de vestido, escolha o comprimento que você preferir, mas lembre do frio.
+                  Saltos são bem-vindos, só evite os muito finos: teremos grama.
+                  Para cores, vale tudo (lembrando de deixar o branco pra noiva, tá?).
+                </p>
+                <p>
+                  Homens: Esporte fino, com atenção ao frio! Um blazer ou terno já resolvem,
+                  e um casaco é mais que bem-vindo. A gravata (ou a ausência dela) fica ao seu critério.
+                </p>
+              </div>
+        
+            </div>
+          </div>
+        </section>
+        
         <section class="countdown-section">
         
           <div class="countdown-content">
