@@ -101,6 +101,33 @@
       padding-left: 50px;
     }
 
+    .script-note {
+      font-family: "Handsome", cursive;
+      color: #CDC1AB;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1.25;
+      opacity: 0.95;
+    }
+    
+    .ceremony-item div {
+      position: relative;
+    }
+    
+    .ceremony-note {
+      position: absolute;
+      left: 210px;
+      top: 2px;
+      font-size: 22px;
+      white-space: nowrap;
+    }
+    
+    .dress-note {
+      margin-top: 28px;
+      padding-left: 50px;
+      font-size: 24px;
+    }
+
     .countdown-section {
       position: relative;
       min-height: 100vh;
@@ -187,6 +214,13 @@
       width: 100%;
       height: auto;
       display: block;
+    }
+    
+    @font-face {
+      font-family: "Handsome";
+      src: url("./Handsome.otf") format("opentype");
+      font-weight: normal;
+      font-style: normal;
     }
     
     @font-face {
@@ -1042,9 +1076,13 @@
                   <div><strong>15:00</strong><span>Início da celebração</span></div>
                 </div>
         
-                <div class="program-item">
+                <div class="program-item ceremony-item">
                   <img src="aliancas.png" alt="">
-                  <div><strong>15:30</strong><span>Cerimônia</span></div>
+                  <div>
+                    <strong>15:30</strong>
+                    <span>Cerimônia</span>
+                    <em class="script-note ceremony-note">não se atrase,<br>vai ser curtinha!</em>
+                  </div>
                 </div>
         
                 <div class="program-item">
@@ -1074,6 +1112,10 @@
                 <p>
                   <strong>Homens:</strong> Esporte fino, com atenção ao frio! Um blazer ou terno já resolvem,
                   e um casaco é mais que bem-vindo. A gravata (ou a ausência dela) fica ao seu critério.
+                </p>
+                <p class="script-note dress-note">
+                  Dica: procurar no Pinterest por<br>
+                  "winter wedding guest" pode ajudar!
                 </p>
               </div>
         
