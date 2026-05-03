@@ -1030,6 +1030,76 @@
       background: rgba(95, 82, 57, 0.08);
       transform: translateY(-1px);
     }
+
+    .local-section {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: #2d2b25;
+    }
+    
+    .local-text {
+      background: url("fundo_pag_5.png") center/cover no-repeat;
+      padding: 110px 80px;
+      color: #faf1e1;
+    }
+    
+    .local-text-inner {
+      max-width: 430px;
+    }
+    
+    .local-title {
+      font-family: "Quattrocento", serif;
+      font-size: 30px;
+      font-weight: 400;
+      color: #faf1e1;
+      margin: 0 0 18px;
+    }
+    
+    .local-name {
+      font-family: "Quattrocento", serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #faf1e1;
+      margin: 0 0 22px;
+      text-transform: uppercase;
+    }
+    
+    .local-description,
+    .hotel-list {
+      font-family: "RobotoMono", monospace;
+      font-weight: 300;
+      font-size: 11px;
+      line-height: 1.65;
+      color: #cdc1ab;
+    }
+    
+    .hotel-list {
+      margin-top: 28px;
+    }
+    
+    .hotel-row {
+      display: grid;
+      grid-template-columns: 1fr 58px 48px;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+    
+    .local-image {
+      position: relative;
+      background: url("haras.jpg") center/cover no-repeat;
+      min-height: 100vh;
+    }
+    
+    .local-map {
+      position: absolute;
+      left: 44px;
+      bottom: 56px;
+      width: 230px;
+      height: 170px;
+      border: 0;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
     
     @media (max-width: 980px) {
       .info-grid,
@@ -1323,6 +1393,50 @@
               </div>
             </section>
 
+        <section class="local-section">
+                <div class="local-text">
+                  <div class="local-text-inner">
+                    <h2 class="local-title">O LOCAL</h2>
+                    <h3 class="local-name">Haras Vila Real</h3>
+              
+                    <div class="local-description">
+                      <p>
+                        Um espaço com carinha de campo, a menos de 1 hora de São Paulo.
+                        Venham de Uber, ou nos chamem se tiverem interesse em uma van!
+                      </p>
+              
+                      <p>
+                        Para quem vem de fora de São Paulo, as opções de estadia são muitas.
+                        O Haras fica a 40 minutos da Av. Faria Lima e 50 da Av. Paulista.
+                      </p>
+              
+                      <p>
+                        Se você preferir ficar hospedado em Embú das Artes, dá uma conferida nesses hotéis:
+                      </p>
+                    </div>
+              
+                    <div class="hotel-list">
+                      <div class="hotel-row"><span>Villa Serena Bed&amp;Breakfast</span><span>25 min</span><span>$$</span></div>
+                      <div class="hotel-row"><span>Pousada O Garimpo</span><span>15 min</span><span>$$</span></div>
+                      <div class="hotel-row"><span>Villagio Embu</span><span>15 min</span><span>$$$</span></div>
+                      <div class="hotel-row"><span>Hotel Chalet Monet</span><span>15 min</span><span>$$$</span></div>
+                      <div class="hotel-row"><span>Haras Buona Fortuna</span><span>20 min</span><span>$$$</span></div>
+                      <div class="hotel-row"><span>Almenat by Hilton</span><span>20 min</span><span>$$$$</span></div>
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="local-image">
+                  <iframe
+                    class="local-map"
+                    src="<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3655.4319248544093!2d-46.84828608909922!3d-23.6246979638336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cfaae1970114eb%3A0xac4cb63f14415503!2sWelucci%20Vila%20Real%20-%20Espa%C3%A7o%20para%20Eventos!5e0!3m2!1spt-BR!2sbr!4v1777836409599!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                  </iframe>
+                </div>
+              </section>
+
+        
         <section class="section soft">
           <div class="section-plain">
             <div class="section-head">
@@ -1352,7 +1466,8 @@
           </div>
         </section>
 
-       
+        
+        
         <section class="section">
           <div class="section-plain">
             <div class="section-head">
