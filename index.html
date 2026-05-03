@@ -907,6 +907,64 @@
       margin: 24px 0;
     }
 
+    .rsvp-visual-section {
+      min-height: 100vh;
+      background: url("./Fundo_pag_3.png") center/cover no-repeat;
+      padding: 90px 80px;
+      display: flex;
+      align-items: center;
+    }
+
+    .rsvp-visual-inner {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+    
+    .rsvp-visual-content {
+      grid-column: 2;
+      max-width: 460px;
+    }
+    
+    .rsvp-visual-title {
+      margin: 0 0 24px;
+      font-family: "Quattrocento", serif;
+      font-size: clamp(38px, 4vw, 58px);
+      font-weight: 400;
+      color: #2d2b25;
+      line-height: 1;
+    }
+    
+    .rsvp-visual-text {
+      margin: 0 0 34px;
+      font-family: "Quattrocento", serif;
+      font-size: 20px;
+      line-height: 1.45;
+      color: #2d2b25;
+    }
+    
+    .rsvp-visual-section .search-wrap {
+      max-width: 100%;
+      margin: 0;
+    }
+    
+    .rsvp-visual-section .search-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+    }
+    
+    .rsvp-visual-section input {
+      background: rgba(255,255,255,0.78);
+    }
+    
+    .rsvp-visual-section .button {
+      background: #600e07;
+    }
+        
     @media (max-width: 980px) {
       .info-grid,
       .gift-grid,
@@ -1221,16 +1279,19 @@
           </div>
         </section>
 
-        <section class="section soft">
-          <div class="section-plain">
-            <div class="section-head">
-              <span class="eyebrow">RSVP</span>
-              <h2 class="section-title">Confirme sua presença</h2>
-              <p class="section-intro">
-                Digite seu nome para localizar seu convite e confirmar sua presença.
-              </p>
-            </div>
-
+       <section class="rsvp-visual-section">
+        <div class="rsvp-visual-inner">
+          <div class="rsvp-visual-content">
+            <h2 class="rsvp-visual-title">VOCÊ VEM?</h2>
+      
+            <p class="rsvp-visual-text">
+              Nos conte se você vai poder estar com a gente<br>
+              nesse dia! É só preencher o formulário abaixo<br>
+              com seu nome e confirmar sua presença — isso<br>
+              nos ajuda muito a planejar cada detalhe com<br>
+              carinho.
+            </p>
+      
             <div class="search-wrap">
               <div class="search-row">
                 <input
@@ -1241,11 +1302,12 @@
                 >
                 <button class="button" type="button" onclick="buscar()">Pesquisar</button>
               </div>
-
+      
               <div id="resultado"></div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
         
         
