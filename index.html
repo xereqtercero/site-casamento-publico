@@ -996,26 +996,29 @@
     
     /* ===== BOTÃO RSVP ===== */
     .rsvp-visual-section .button {
-      height: 48px;
-      padding: 0 24px;
+      height: 48px;                 /* igual ao input */
+      padding: 0 26px;
     
       border-radius: 999px;
-      border: 1px solid rgba(95, 82, 57, 0.3);
+      border: none;
     
-      background: transparent;
-      color: #5f5239;
+      background: #5f5239;          /* marrom principal */
+      color: #faf1e1;               /* bege claro */
     
       font-family: "Quattrocento", serif;
       font-size: 15px;
     
-      box-shadow: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    
+      line-height: 1;               /* evita desalinhamento vertical */
     
       transition: all 0.25s ease;
     }
     
     .rsvp-visual-section .button:hover {
-      background: rgba(95, 82, 57, 0.08);
-      border-color: rgba(95, 82, 57, 0.5);
+      background: #4a4230;
       transform: translateY(-1px);
     }
     
