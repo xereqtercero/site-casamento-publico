@@ -997,28 +997,28 @@
     /* ===== BOTÃO RSVP ===== *
     .rsvp-visual-section .button {
       height: 48px;
-      min-height: 40px;
+      min-height: 48px;   /* 🔥 isso corrige o problema */
+    
       padding: 0 26px;
     
       border-radius: 999px;
       border: none;
     
-      background: #600e07;
-      color: #faf1e1;
+      background: #600e07;   /* volta pro vinho original */
+      color: #FAF1E1;
     
       font-family: "Quattrocento", serif;
       font-size: 15px;
+      line-height: 1;
     
       display: flex;
       align-items: center;
       justify-content: center;
     
-      line-height: 1;
       box-shadow: none;
-    
       transition: all 0.25s ease;
     }
-      
+    
     .rsvp-visual-section .button:hover {
       background: #4a0b05;
       transform: translateY(-1px);
