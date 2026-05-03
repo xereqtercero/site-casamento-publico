@@ -254,8 +254,15 @@
 
     @font-face {
       font-family: "RobotoMono";
+      src: url("./RobotoMono-Light.ttf") format("truetype");
+      font-weight: 300;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: "RobotoMono";
       src: url("./RobotoMono.ttf") format("truetype");
-      font-weight: normal;
+      font-weight: 400;
       font-style: normal;
     }
     
@@ -909,7 +916,7 @@
 
     .rsvp-visual-section {
       min-height: 100vh;
-      background: url("fundo_pag_4.png") left center / cover no-repeat;
+      background: url("fundo_pag_4_2.png") left center / cover no-repeat;
       display: flex;
       align-items: flex-start;
       padding-top: 120px;
@@ -939,7 +946,7 @@
     
     .rsvp-visual-text {
       margin: 0 0 34px;
-      font-family: "RobotoCustom", monospace;
+      font-family: "RobotoMono", monospace;
       font-weight: 300;
       font-size: 13px;
       line-height: 1.5;
