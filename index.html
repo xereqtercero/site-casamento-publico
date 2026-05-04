@@ -192,7 +192,7 @@
     }
     
     .count-subtitle {
-      margin-top: 120px;
+      margin-top: 140px;
       font-family: "RobotoMono", sans-serif;
       font-weight: 300;
       color: #2d2b25;
@@ -1758,44 +1758,50 @@
         letter-spacing: 0.10em;
       }
     
-      /* COUNTDOWN */
+      /* COUNTDOWN MOBILE */
       .countdown-section {
         min-height: 100svh;
-        padding: 80px 20px 70px;
+        padding: 82px 22px 70px;
         overflow: hidden;
       }
       
       .countdown-content {
         position: relative;
-        height: 420px;
-        min-height: 420px;
+        height: auto;
+        min-height: 0;
+      
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
       
       .count-left,
       .count-right,
       .count-birds {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
+        position: static;
+        transform: none;
+      }
+      
+      .count-left,
+      .count-right {
+        font-family: "Quattrocento", serif;
+        color: #5f5239;
+        font-size: 24px;
+        line-height: 1.15;
+        text-align: center;
       }
       
       .count-left {
-        left: 4%;
-        font-size: 17px;
-        text-align: left;
-      }
-      
-      .count-right {
-        right: 4%;
-        font-size: 17px;
-        text-align: left;
+        margin-bottom: 34px;
       }
       
       .count-birds {
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 245px;
-        max-width: 44vw;
+        width: min(76vw, 300px);
+        margin: 0 auto 34px;
+      }
+      
+      .count-right {
+        margin-bottom: 70px;
       }
       
       .count-subtitle {
@@ -1804,6 +1810,14 @@
         font-size: 12px;
         line-height: 1.8;
         letter-spacing: 3px;
+      }
+      
+      .count-days {
+        margin-top: 34px;
+      }
+      
+      .count-days span {
+        font-size: 58px;
       }
     
       /* DETALHES / PROGRAMAÇÃO */
