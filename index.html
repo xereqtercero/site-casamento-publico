@@ -1902,41 +1902,52 @@
       /* RSVP MOBILE */
       .rsvp-visual-section {
         min-height: 100svh;
-        padding: 86px 28px 80px;
-      
-        background-image: url("Fundo_pag_4_2.png");
-        background-size: 185%;
-        background-position: 34% 78%;
-        background-repeat: no-repeat;
-      
-        display: flex;
-        align-items: flex-start;
+        padding: 64px 22px 70px;
+        background: #cdc1ab;
+        display: block;
+        overflow: hidden;
       }
       
       .rsvp-visual-inner {
         width: 100%;
-        justify-content: center;
+        display: block;
       }
       
       .rsvp-visual-content {
         width: 100%;
         max-width: 420px;
         margin: 0 auto;
+        position: relative;
+        z-index: 2;
       }
       
       .rsvp-visual-title {
-        font-size: 44px;
+        font-size: 46px;
         line-height: 1;
-        margin-bottom: 28px;
-        text-align: left;
+        text-align: center;
+        margin: 0 0 18px;
+      }
+      
+      .rsvp-dog {
+        position: relative;
+        display: block;
+      
+        width: 145%;
+        max-width: none;
+      
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0 auto 28px;
+      
+        z-index: 1;
+        opacity: 0.95;
       }
       
       .rsvp-visual-text {
-        max-width: 100%;
         font-size: 13px;
-        line-height: 1.75;
-        margin-bottom: 46px;
+        line-height: 1.65;
         text-align: left;
+        margin: 0 0 32px;
       }
       
       .rsvp-visual-section .search-row {
@@ -1945,15 +1956,10 @@
         gap: 14px;
       }
       
-      .rsvp-visual-section input {
-        width: 100%;
-        height: 54px;
-      }
-      
+      .rsvp-visual-section input,
       .rsvp-visual-section .button {
         width: 100%;
-        height: 54px;
-        background: rgba(250, 241, 225, 0.18);
+        height: 52px;
       }
     
       /* LOCAL */
