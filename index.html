@@ -1362,6 +1362,110 @@
       text-decoration: underline;
       font-weight: 600;
     }
+
+    .pix-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(20, 18, 14, 0.62);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .pix-modal.active {
+      display: flex;
+    }
+    
+    .pix-modal-content {
+      width: min(420px, 92vw);
+      max-height: 90vh;
+      overflow-y: auto;
+      background: #faf1e1;
+      color: #2d2b25;
+      padding: 34px 28px 30px;
+      border-radius: 18px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.28);
+    }
+    
+    .pix-close {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      border: none;
+      background: transparent;
+      font-size: 28px;
+      color: #5f5239;
+      cursor: pointer;
+    }
+    
+    .pix-modal-content h3 {
+      margin: 0 0 14px;
+      font-family: "Quattrocento", serif;
+      font-size: 30px;
+      font-weight: 400;
+      color: #5f5239;
+    }
+    
+    .pix-modal-text {
+      margin: 0 auto 20px;
+      font-family: "RobotoMono", monospace;
+      font-weight: 300;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #5f5239;
+    }
+    
+    .pix-qr {
+      width: 210px;
+      height: 210px;
+      margin: 0 auto 18px;
+      background: white;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    
+    #pixCode {
+      width: 100%;
+      height: 88px;
+      resize: none;
+      border: 1px solid rgba(95, 82, 57, 0.22);
+      border-radius: 12px;
+      padding: 12px;
+      font-family: "RobotoMono", monospace;
+      font-size: 11px;
+      color: #2d2b25;
+      background: rgba(255,255,255,0.72);
+      margin-bottom: 16px;
+    }
+    
+    .pix-copy-button {
+      height: 46px;
+      padding: 0 24px;
+      border-radius: 999px;
+      border: 1px solid #9b8f7a;
+      background: transparent;
+      color: #5f5239;
+      font-family: "Quattrocento", serif;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    
+    .pix-copy-button:hover {
+      background: rgba(95, 82, 57, 0.08);
+    }
+    
+    .pix-copied-message {
+      display: none;
+      margin: 14px 0 0;
+      font-family: "RobotoMono", monospace;
+      font-weight: 300;
+      font-size: 12px;
+      color: #5f5239;
+    }
     
     @media (max-width: 980px) {
       .info-grid,
@@ -1771,7 +1875,9 @@
               <div class="gift-card-image"><img src="lista-1.jpg" alt=""></div>
               <p class="gift-card-name">Café da manhã reforçado pós-after do casamento</p>
               <p class="gift-card-price">R$ 250,00</p>
-              <a class="gift-card-button" href="#">Contribuir</a>
+              <button class="gift-card-button" type="button" onclick="abrirPixModal('presente1')">
+  Dar de presente
+</button>
             </div>
         
             <div class="gift-card">
@@ -2204,6 +2310,62 @@
     setInterval(atualizarContador, 1000 * 60 * 60);
 
   carregar();
+    const pixPresentes = {
+      presente1: {
+        titulo: "Muito obrigada! 💛",
+        texto: "Você está contribuindo com: Café da manhã reforçado pós-after do casamento — R$ 250,00. Vamos lembrar de você nesse café da manhã salvador!",
+        codigo: "00020126580014BR.GOV.BCB.PIX013687b77155-9b2e-46c1-bfb1-8bb4f9fc344c5204000053039865406250.005802BR5915Marina e Victor6009Sao Paulo62140510Casamento16304EFBD"
+      }
+    };
+    
+    function abrirPixModal(presenteId) {
+      const presente = pixPresentes[presenteId];
+    
+      document.getElementById("pixModalTitle").innerText = presente.titulo;
+      document.getElementById("pixModalText").innerText = presente.texto;
+      document.getElementById("pixCode").value = presente.codigo;
+    
+      document.getElementById("pixQrCode").src =
+        "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
+        encodeURIComponent(presente.codigo);
+    
+      document.getElementById("pixCopiedMessage").style.display = "none";
+      document.getElementById("pixModal").classList.add("active");
+    }
+    
+    function fecharPixModal() {
+      document.getElementById("pixModal").classList.remove("active");
+    }
+    
+    function copiarPix() {
+      const codigo = document.getElementById("pixCode").value;
+    
+      navigator.clipboard.writeText(codigo).then(() => {
+        document.getElementById("pixCopiedMessage").style.display = "block";
+      });
+    }
+  
 </script>
+    <div id="pixModal" class="pix-modal">
+    <div class="pix-modal-content">
+      <button class="pix-close" type="button" onclick="fecharPixModal()">×</button>
+  
+      <h3 id="pixModalTitle">Muito obrigada!</h3>
+  
+      <p id="pixModalText" class="pix-modal-text"></p>
+  
+      <img id="pixQrCode" class="pix-qr" src="" alt="QR Code Pix">
+  
+      <textarea id="pixCode" readonly></textarea>
+  
+      <button class="pix-copy-button" type="button" onclick="copiarPix()">
+        Copiar código Pix
+      </button>
+  
+      <p id="pixCopiedMessage" class="pix-copied-message">
+        Código copiado 💛
+      </p>
+    </div>
+  </div>
 </body>
 </html>
