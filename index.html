@@ -1651,6 +1651,7 @@
       .hero-location br {
         display: none;
       }
+    }
 
       /* =========================
    AJUSTES MOBILE GERAL
@@ -1670,54 +1671,65 @@
         width: 100%;
       }
     
-      /* HERO */
+     /* HERO MOBILE */
       .hero {
         min-height: 100svh;
         padding: 0 18px;
         background-size: cover;
         background-position: center;
+        overflow: hidden;
       }
-    
-      .hero-names {
-        transform: none;
+      
+      .hero-card {
         width: 100%;
-        height: auto;
-        margin-top: -20px;
       }
-    
-      .hero-name-line {
-        font-size: clamp(44px, 15vw, 64px);
-        white-space: normal;
-        line-height: 0.95;
-        text-align: center;
-      }
-    
-      .hero-amp-bg {
-        font-size: clamp(180px, 52vw, 240px);
-        top: 38%;
-        left: 50%;
-      }
-    
-      .hero-date {
+      
+      .hero-names {
+        width: 100%;
+        height: 260px;
+        margin: 0 auto;
+        transform: translateY(-20px);
         position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
-        margin-top: 22px;
-        font-size: 20px;
       }
-    
-      .hero-place {
-        left: 24px;
-        right: 24px;
-        bottom: 60px;
-        font-size: 11px;
-        gap: 14px;
+      
+      .hero-name-line {
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        transform: translate(-50%, -50%) scaleX(0.62);
+        transform-origin: center;
+      
+        font-size: 58px;
+        white-space: nowrap;
+        line-height: 1;
+        letter-spacing: 0.01em;
       }
-    
+      
+      .hero-amp-bg {
+        left: 50%;
+        top: 43%;
+        transform: translate(-50%, -50%);
+      
+        font-size: 220px;
+        line-height: 1;
+      }
+      
+      .hero-date {
+        position: absolute;
+        left: 50%;
+        top: 68%;
+        transform: translate(-50%, -50%);
+      
+        margin: 0;
+        font-size: 22px;
+        white-space: nowrap;
+      }
+      
       .hero-birds {
-        top: 70%;
-        width: 150px;
+        left: 50%;
+        top: 68%;
+        transform: translate(-50%, -50%);
+        width: 145px;
       }
     
       /* COUNTDOWN */
