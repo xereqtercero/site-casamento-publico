@@ -942,11 +942,25 @@
     }
 
     .rsvp-visual-section {
+      position: relative;
       min-height: 100vh;
-      background: url("Fundo_pag_4_2.png") left center / cover no-repeat;
+      background: #cdc1ab;
       display: flex;
       align-items: flex-start;
       padding-top: 120px;
+      overflow: hidden;
+    }
+
+    .rsvp-dog {
+      position: absolute;
+      left: -60px;
+      bottom: -110px;
+    
+      width: 760px;
+      max-width: none;
+    
+      z-index: 1;
+      pointer-events: none;
     }
     
     .rsvp-visual-inner {
@@ -955,6 +969,8 @@
       margin: 0 auto;
       display: flex;
       justify-content: flex-end;
+      position: relative;
+      z-index: 2;
     }
     
     .rsvp-visual-content {
@@ -2205,6 +2221,8 @@
         </section>
 
         <section class="rsvp-visual-section">
+          <img src="TATUZAO.png" class="rsvp-dog" alt="">
+
                               <div class="rsvp-visual-inner">
                                 <div class="rsvp-visual-content">
                                   <h2 class="rsvp-visual-title">VOCÊ VEM?</h2>
