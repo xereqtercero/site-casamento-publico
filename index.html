@@ -1965,22 +1965,23 @@
         height: 52px;
       }
     
-      /* LOCAL MOBILE */
+      /* LOCAL MOBILE - imagem com respiro */
       .local-section {
         min-height: auto;
-        padding: 0;
-        background: #6f5f47;
+        padding: 72px 28px 64px;
+        background: #332f29;
         color: #faf1e1;
         display: flex;
         flex-direction: column;
       }
       
-      /* cria a imagem como bloco superior */
+      /* imagem superior */
       .local-section::before {
         content: "";
         display: block;
         width: 100%;
-        height: 52svh;
+        height: 62svh;
+        margin: 0 auto 44px;
       
         background:
           linear-gradient(rgba(20,18,14,0.08), rgba(20,18,14,0.08)),
@@ -1989,23 +1990,22 @@
         filter: saturate(0.75) brightness(0.92);
       }
       
-      /* some com o título "O LOCAL" no mobile */
+      /* esconde O LOCAL no mobile */
       .local-title {
         display: none;
       }
       
-      /* o card vira o bloco sólido */
+      /* conteúdo sem card */
       .local-card {
         position: static;
         width: 100%;
         margin: 0;
-        padding: 42px 28px 52px;
+        padding: 0;
       
-        background: ##181a17;
+        background: transparent;
         color: #faf1e1;
       }
       
-      /* textos */
       .local-name {
         font-size: 22px;
         line-height: 1.1;
@@ -2031,31 +2031,6 @@
         line-height: 1.75;
         color: #faf1e1;
         text-decoration: underline;
-      }
-    
-      /* HOSPEDAGEM MOBILE */
-      .stay-section {
-        min-height: auto;
-        padding: 80px 24px;
-        background-position: center;
-      }
-    
-      .stay-content {
-        max-width: 100%;
-        margin-left: 0;
-      }
-    
-      .stay-title {
-        font-size: 42px;
-        line-height: 1.25;
-        margin-bottom: 56px;
-        text-align: center;
-      }
-    
-      .stay-row {
-        grid-template-columns: 1fr;
-        gap: 2px;
-        margin-bottom: 18px;
       }
     
       /* LISTA DE PRESENTES INTRO MOBILE */
