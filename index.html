@@ -192,8 +192,9 @@
     }
     
     .count-subtitle {
-      margin-top: 110px;
+      margin-top: 120px;
       font-family: "RobotoMono", sans-serif;
+      font-weight: 300;
       color: #2d2b25;
       font-size: 14px;
       letter-spacing: 2px;
@@ -1763,34 +1764,42 @@
         padding: 80px 20px 70px;
         overflow: hidden;
       }
-    
+      
       .countdown-content {
-        height: auto;
-        min-height: 360px;
+        position: relative;
+        height: 420px;
+        min-height: 420px;
       }
-    
+      
       .count-left,
       .count-right,
       .count-birds {
-        top: 45%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
       }
-    
+      
       .count-left {
-        left: 26%;
-        font-size: 18px;
+        left: 4%;
+        font-size: 17px;
+        text-align: left;
       }
-    
+      
       .count-right {
-        right: 26%;
-        font-size: 18px;
+        right: 4%;
+        font-size: 17px;
+        text-align: left;
       }
-    
+      
       .count-birds {
-        width: 260px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 245px;
+        max-width: 44vw;
       }
-    
+      
       .count-subtitle {
-        margin: 20px auto 0;
+        margin: 0 auto;
         max-width: 340px;
         font-size: 12px;
         line-height: 1.8;
