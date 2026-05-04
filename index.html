@@ -909,11 +909,30 @@
       font-size: 16px;
     }
 
-    .footer {
-      padding: 36px 20px 60px;
+    footer {
+      background: #faf1e1;
+      color: #5f5239;
+      padding: 42px 24px 46px;
       text-align: center;
-      color: var(--muted);
-      font-size: 14px;
+      border-top: 1px solid rgba(95, 82, 57, 0.18);
+    }
+    
+    footer .footer-names {
+      font-family: "Quattrocento", serif;
+      font-size: 22px;
+      font-weight: 400;
+      margin: 0 0 8px;
+      color: #5f5239;
+    }
+    
+    footer .footer-date {
+      font-family: "RobotoMono", monospace;
+      font-weight: 300;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0;
+      color: rgba(95, 82, 57, 0.72);
     }
 
     hr {
@@ -2042,8 +2061,9 @@
           </div>
         </section>
 
-        <footer class="footer">
-          Marina e Victor — 15 de agosto de 2026
+        <footer>
+          <p class="footer-names">Marina &amp; Victor</p>
+          <p class="footer-date">15 de agosto de 2026</p>
         </footer>
 
       </div>
