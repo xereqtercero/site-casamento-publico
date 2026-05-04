@@ -1067,21 +1067,19 @@
       transform: translateY(-1px);
     }
 
-    .local-section::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: url("haras.jpg") center/cover no-repeat;
-      filter: saturate(0.6) brightness(0.9);
-      z-index: 0;
-    }
-    
-    /* seu conteúdo fica por cima */
-    .local-content {
+    .local-section {
       position: relative;
-      z-index: 1;
+      min-height: 100vh;
+      background:
+      linear-gradient(
+        to bottom,
+        rgba(20, 18, 14, 0.15) 0%,
+        rgba(20, 18, 14, 0.35) 60%,
+        rgba(20, 18, 14, 0.55) 100%
+      ),
+      url("haras.jpg") center/cover no-repeat;
     }
-    
+          
     .local-title {
       position: absolute;
       top: 72px;
