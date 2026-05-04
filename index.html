@@ -1651,6 +1651,358 @@
       .hero-location br {
         display: none;
       }
+
+      /* =========================
+   AJUSTES MOBILE GERAL
+   ========================= */
+
+    @media (max-width: 768px) {
+      html, body {
+        width: 100%;
+        overflow-x: hidden;
+      }
+    
+      .page-shell {
+        overflow-x: hidden;
+      }
+    
+      section {
+        width: 100%;
+      }
+    
+      /* HERO */
+      .hero {
+        min-height: 100svh;
+        padding: 0 18px;
+        background-size: cover;
+        background-position: center;
+      }
+    
+      .hero-names {
+        transform: none;
+        width: 100%;
+        height: auto;
+        margin-top: -20px;
+      }
+    
+      .hero-name-line {
+        font-size: clamp(44px, 15vw, 64px);
+        white-space: normal;
+        line-height: 0.95;
+        text-align: center;
+      }
+    
+      .hero-amp-bg {
+        font-size: clamp(180px, 52vw, 240px);
+        top: 38%;
+        left: 50%;
+      }
+    
+      .hero-date {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        margin-top: 22px;
+        font-size: 20px;
+      }
+    
+      .hero-place {
+        left: 24px;
+        right: 24px;
+        bottom: 60px;
+        font-size: 11px;
+        gap: 14px;
+      }
+    
+      .hero-birds {
+        top: 70%;
+        width: 150px;
+      }
+    
+      /* COUNTDOWN */
+      .countdown-section {
+        min-height: 100svh;
+        padding: 80px 20px 70px;
+        overflow: hidden;
+      }
+    
+      .countdown-content {
+        height: auto;
+        min-height: 360px;
+      }
+    
+      .count-left,
+      .count-right,
+      .count-birds {
+        top: 45%;
+      }
+    
+      .count-left {
+        left: 26%;
+        font-size: 18px;
+      }
+    
+      .count-right {
+        right: 26%;
+        font-size: 18px;
+      }
+    
+      .count-birds {
+        width: 260px;
+      }
+    
+      .count-subtitle {
+        margin: 20px auto 0;
+        max-width: 340px;
+        font-size: 12px;
+        line-height: 1.8;
+        letter-spacing: 3px;
+      }
+    
+      /* DETALHES / PROGRAMAÇÃO */
+      .details-visual-section {
+        min-height: auto;
+        padding: 70px 22px;
+      }
+    
+      .details-main-title {
+        font-size: 40px;
+        line-height: 1.25;
+        margin-bottom: 55px;
+      }
+    
+      .details-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+    
+      .program-block h3,
+      .dress-block h3,
+      .dress-block p {
+        padding-left: 0;
+      }
+    
+      .program-item {
+        grid-template-columns: 92px 1fr;
+        padding-left: 0;
+        gap: 18px;
+        margin-bottom: 22px;
+      }
+    
+      .program-item img {
+        width: 92px;
+      }
+    
+      .program-item div {
+        gap: 14px;
+        align-items: flex-start;
+      }
+    
+      .program-item strong {
+        font-size: 24px;
+        min-width: 62px;
+      }
+    
+      .program-item span {
+        font-size: 13px;
+        white-space: normal;
+      }
+    
+      .ceremony-note {
+        position: static;
+        display: block;
+        margin-top: 8px;
+        font-size: 20px;
+        white-space: normal;
+      }
+    
+      .dress-block p.dress-note {
+        margin: 28px 0 0;
+        max-width: 100%;
+        font-size: 22px;
+      }
+    
+      /* RSVP */
+      .rsvp-visual-section {
+        min-height: 100svh;
+        padding: 80px 22px;
+        background-position: center;
+        align-items: center;
+      }
+    
+      .rsvp-visual-inner {
+        justify-content: center;
+      }
+    
+      .rsvp-visual-content {
+        max-width: 100%;
+        margin-right: 0;
+      }
+    
+      .rsvp-visual-title {
+        font-size: 42px;
+      }
+    
+      .rsvp-visual-text {
+        font-size: 13px;
+        line-height: 1.7;
+      }
+    
+      .rsvp-visual-section .search-row {
+        grid-template-columns: 1fr;
+      }
+    
+      .rsvp-visual-section input {
+        width: 100%;
+      }
+    
+      .rsvp-visual-section .button {
+        width: 100%;
+      }
+    
+      /* LOCAL */
+      .local-section {
+        min-height: 100svh;
+        padding: 70px 22px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        background-position: center;
+      }
+    
+      .local-title {
+        position: static;
+        font-size: 42px;
+        margin-bottom: auto;
+        text-align: center;
+      }
+    
+      .local-card {
+        position: static;
+        width: 100%;
+        padding: 28px 24px;
+        margin-top: 300px;
+      }
+    
+      /* HOSPEDAGEM */
+      .stay-section {
+        min-height: auto;
+        padding: 80px 24px;
+        background-position: center;
+      }
+    
+      .stay-content {
+        max-width: 100%;
+        margin-left: 0;
+      }
+    
+      .stay-title {
+        font-size: 42px;
+        line-height: 1.25;
+        margin-bottom: 56px;
+        text-align: center;
+      }
+    
+      .stay-row {
+        grid-template-columns: 1fr;
+        gap: 2px;
+        margin-bottom: 18px;
+      }
+    
+      /* LISTA DE PRESENTES INTRO */
+      .gift-section {
+        min-height: 100svh;
+        padding: 80px 24px;
+        align-items: center;
+        background-position: center;
+      }
+    
+      .gift-content {
+        max-width: 100%;
+        margin-left: 0;
+      }
+    
+      /* GRID DE PRESENTES */
+      .gift-grid-section {
+        padding: 56px 18px 40px;
+        overflow-x: hidden;
+      }
+    
+      .gift-grid-title-row {
+        gap: 0;
+      }
+    
+      .gift-grid-title-row::before,
+      .gift-grid-title-row::after {
+        display: none;
+      }
+    
+      .gift-grid-title {
+        font-size: 24px;
+      }
+    
+      .gift-grid-subtitle {
+        max-width: 340px;
+        margin: 16px auto 0;
+        line-height: 1.7;
+      }
+    
+      .gift-cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+      }
+    
+      .gift-card {
+        min-height: 0;
+        padding: 12px 10px 14px;
+      }
+    
+      .gift-card-image {
+        height: 135px;
+      }
+    
+      .gift-card-name {
+        font-size: 12px;
+        min-height: 58px;
+      }
+    
+      .gift-card-price {
+        font-size: 13px;
+      }
+    
+      .gift-card-button {
+        width: 100%;
+        padding: 0 10px;
+        font-size: 15px;
+      }
+    
+      .concrete-gifts {
+        text-align: center;
+        margin-top: 46px;
+      }
+    
+      footer {
+        padding: 48px 20px 24px;
+      }
+    }
+    
+    @media (max-width: 380px) {
+      .gift-cards-grid {
+        grid-template-columns: 1fr;
+      }
+    
+      .hero-name-line {
+        font-size: 42px;
+      }
+    
+      .details-main-title,
+      .stay-title,
+      .local-title {
+        font-size: 36px;
+      }
+}
+      
     }
   </style>
 </head>
