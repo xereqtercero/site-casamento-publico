@@ -1068,53 +1068,52 @@
     }
 
     .local-section {
-      position: relative;
       min-height: 100vh;
       background:
-      linear-gradient(
-        to bottom,
-        rgba(20, 18, 14, 0.15) 0%,
-        rgba(20, 18, 14, 0.35) 60%,
-        rgba(20, 18, 14, 0.55) 100%
-      ),
-      url("haras.jpg") center/cover no-repeat;
+        linear-gradient(rgba(20, 18, 14, 0.42), rgba(20, 18, 14, 0.42)),
+        url("fundo_flores_canva.png") center/cover no-repeat;
+      color: #faf1e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px;
+      overflow: hidden;
     }
-          
+    
+    .local-inner {
+      width: min(1040px, 100%);
+      display: grid;
+      grid-template-columns: 1fr 0.95fr;
+      gap: 92px;
+      align-items: center;
+    }
+    
+    .local-photo-wrap {
+      width: 100%;
+    }
+    
+    .local-photo {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .local-content {
+      max-width: 420px;
+    }
+    
     .local-title {
-      position: absolute;
-      top: 72px;
-      left: 72px;
-      margin: 0;
-    
+      margin: 0 0 52px;
       font-family: "Quattrocento", serif;
-      font-size: 46px;
+      font-size: 36px;
       font-weight: 400;
       color: #faf1e1;
-    }
-    
-    .local-card {
-      position: absolute;
-      right: 92px;
-      bottom: 82px;
-    
-      width: 520px;
-      padding: 44px 48px;
-    
-      background: rgba(45, 43, 37, 0.72);
-      color: #cdc1ab;
-    }
-    
-    .local-name {
-      margin: 0 0 18px;
-    
-      font-family: "Quattrocento", serif;
-      font-size: 22px;
-      font-weight: 400;
-      color: #faf1e1;
-      text-transform: uppercase;
+      letter-spacing: 0.02em;
     }
     
     .local-description {
+      margin: 0 0 26px;
       font-family: "RobotoMono", monospace;
       font-weight: 300;
       font-size: 13px;
@@ -1122,19 +1121,17 @@
       color: #cdc1ab;
     }
     
-    .local-description p {
-      margin: 0 0 22px;
-    }
-    
     .local-address {
-      margin-top: 26px;
-    
+      display: block;
+      margin-top: 36px;
       font-family: "RobotoMono", monospace;
       font-weight: 300;
       font-size: 13px;
-      line-height: 1.55;
+      line-height: 1.65;
       color: #cdc1ab;
       text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
     }
 
       .stay-section {
@@ -1974,72 +1971,39 @@
         height: 52px;
       }
     
-      /* LOCAL MOBILE - imagem com respiro */
+      /* LOCAL MOBILE */
       .local-section {
         min-height: auto;
         padding: 72px 28px 64px;
-        background: #332f29;
-        color: #faf1e1;
+        background:
+          linear-gradient(rgba(20, 18, 14, 0.42), rgba(20, 18, 14, 0.42)),
+          url("fundo_flores_canva.png") center/cover no-repeat;
+      }
+      
+      .local-inner {
         display: flex;
         flex-direction: column;
+        gap: 42px;
       }
       
-      /* imagem superior */
-      .local-section::before {
-        content: "";
-        display: block;
+      .local-photo {
+        height: auto;
         width: 100%;
-        height: 62svh;
-        margin: 0 auto 44px;
-      
-        background:
-          linear-gradient(rgba(20,18,14,0.08), rgba(20,18,14,0.08)),
-          url("haras.jpg") center / cover no-repeat;
-      
-        filter: saturate(0.75) brightness(0.92);
       }
       
-      /* esconde O LOCAL no mobile */
+      .local-content {
+        max-width: 100%;
+      }
+      
       .local-title {
-        display: none;
+        font-size: 24px;
+        margin-bottom: 28px;
       }
       
-      /* conteúdo sem card */
-      .local-card {
-        position: static;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-      
-        background: transparent;
-        color: #faf1e1;
-      }
-      
-      .local-name {
-        font-size: 22px;
-        line-height: 1.1;
-        margin: 0 0 24px;
-        color: #faf1e1;
-      }
-      
-      .local-description {
-        font-size: 13px;
-        line-height: 1.75;
-        color: #faf1e1;
-      }
-      
-      .local-description p {
-        margin: 0 0 26px;
-      }
-      
+      .local-description,
       .local-address {
-        display: block;
-        margin-top: 24px;
-      
         font-size: 13px;
         line-height: 1.75;
-        color: #faf1e1;
-        text-decoration: underline;
       }
     
       /* LISTA DE PRESENTES INTRO MOBILE */
@@ -2345,26 +2309,36 @@
                             </section>
         
         <section class="local-section">
-          <h2 class="local-title"></h2>
+          <div class="local-inner">
         
-          <div class="local-card">
-            <h3 class="local-name">Haras Vila Real</h3>
-        
-            <div class="local-description">
-              <p>
-                Um espaço com carinha de campo, a menos de 1 hora de São Paulo.
-                Venham de Uber, ou nos chamem se tiverem interesse em uma van!
-              </p>
+            <div class="local-photo-wrap">
+              <img src="haras.jpg" alt="Haras Vila Real" class="local-photo">
             </div>
         
-            <a
-              class="local-address"
-              href="https://maps.app.goo.gl/u99rguzM9Yh8TZ41A"
-              target="_blank"
-            >
-              Estr. Moinho Velho, 750 - Vila Real Moinho Velho,<br>
-              Embu das Artes - SP, 06805-170
-            </a>
+            <div class="local-content">
+              <h2 class="local-title">HARAS VILA REAL</h2>
+        
+              <p class="local-description">
+                Um espaço com carinha de campo, a menos<br>
+                de 1 hora de São Paulo.
+              </p>
+        
+              <p class="local-description">
+                Venham de Uber, ou nos chamem se<br>
+                tiverem interesse em uma van!
+              </p>
+        
+              <a
+                class="local-address"
+                href="https://maps.app.goo.gl/u99rguzM9Yh8TZ41A"
+                target="_blank"
+              >
+                Estr. Moinho Velho, 750 - Vila Real<br>
+                Moinho Velho, Embu das Artes - SP,<br>
+                06805-170
+              </a>
+            </div>
+        
           </div>
         </section>
 
