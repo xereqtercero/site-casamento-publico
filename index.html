@@ -1206,72 +1206,45 @@
     }
 
     .gift-section {
-      position: relative;
       min-height: 100vh;
       background: #cdc1ab;
-      overflow: hidden;
-    
       display: flex;
       align-items: center;
-      padding: 90px 7%;
+      justify-content: center;
+      padding: 90px 80px;
+      overflow: hidden;
     }
     
-    .gift-big-title {
-      position: absolute;
-      left: 0;
-    
-      font-family: "Quattrocento", serif;
-      font-size: clamp(120px, 17vw, 250px);
-      line-height: 0.85;
-      color: #a89b85;
-      opacity: 0.75;
-      letter-spacing: 0.02em;
-      white-space: nowrap;
-    
-      z-index: 1;
-      pointer-events: none;
+    .gift-editorial-inner {
+      width: min(1040px, 100%);
+      display: grid;
+      grid-template-columns: 0.95fr 1fr;
+      gap: 96px;
+      align-items: center;
     }
     
-    .gift-big-title-top {
-      top: 0;
-    }
-    
-    .gift-big-title-bottom {
-      bottom: -10px;
-      left: 8%;
-    }
-    
-    .gift-birds {
-      position: absolute;
-      right: -40px;
-      top: 13%;
-      width: min(42vw, 520px);
-      opacity: 0.72;
-      z-index: 2;
-      pointer-events: none;
+    .gift-editorial-birds {
+      width: min(420px, 100%);
+      justify-self: center;
+      opacity: 0.82;
     }
     
     .gift-content {
-      position: relative;
-      z-index: 3;
-      max-width: 620px;
-      margin-left: 0;
+      max-width: 520px;
+      margin: 0;
     }
     
     .gift-content h2 {
-      margin: 0 0 34px;
-    
+      margin: 0 0 46px;
       font-family: "Quattrocento", serif;
       font-weight: 400;
       font-size: 30px;
-      line-height: 1.25;
+      line-height: 1.28;
       color: #2d2b25;
     }
     
     .gift-text {
-      max-width: 620px;
       margin: 0 0 28px;
-    
       font-family: "RobotoMono", monospace;
       font-weight: 300;
       font-size: 14px;
@@ -2028,43 +2001,32 @@
       /* LISTA DE PRESENTES INTRO MOBILE */
       .gift-section {
         min-height: 100svh;
-        padding: 110px 28px 120px;
-        align-items: center;
+        padding: 80px 28px 86px;
         background: #cdc1ab;
       }
       
-      .gift-big-title {
-        font-size: 86px;
-        opacity: 0.65;
+      .gift-editorial-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 42px;
+        align-items: center;
       }
       
-      .gift-big-title-top {
-        top: 20px;
-        left: -8px;
-      }
-      
-      .gift-big-title-bottom {
-        bottom: 18px;
-        left: -8px;
-        font-size: 78px;
-      }
-      
-      .gift-birds {
-        right: -70px;
-        top: 17%;
-        width: 330px;
-        opacity: 0.55;
+      .gift-editorial-birds {
+        width: min(82vw, 360px);
+        opacity: 0.75;
       }
       
       .gift-content {
         max-width: 100%;
-        margin-left: 0;
+        margin: 0;
+        text-align: left;
       }
       
       .gift-content h2 {
         font-size: 30px;
-        line-height: 1.25;
-        margin-bottom: 32px;
+        line-height: 1.28;
+        margin-bottom: 38px;
       }
       
       .gift-text {
@@ -2449,23 +2411,24 @@
         </section>
 
         <section class="gift-section">
-          <div class="gift-big-title gift-big-title-top">LISTA DE</div>
-          <div class="gift-big-title gift-big-title-bottom">PRESENTES</div>
+          <div class="gift-editorial-inner">
         
-          <img src="passaros_1.png" class="gift-birds" alt="">
+            <img src="passaros_1.png" class="gift-editorial-birds" alt="">
         
-          <div class="gift-content">
-            <h2>Sua presença é o melhor presente de todos.</h2>
+            <div class="gift-content">
+              <h2>Sua presença é o melhor<br>presente de todos.</h2>
         
-            <p class="gift-text">
-              Mas, se você estiver com uma vontade incontrolável de nos presentear,
-              vamos ficar muito contentes em receber e falar "Ah, não precisava!".
-            </p>
+              <p class="gift-text">
+                Mas, se você estiver com uma vontade incontrolável de nos presentear,
+                vamos ficar muito contentes em receber e falar "Ah, não precisava!".
+              </p>
         
-            <p class="gift-text">
-              Já que você vai gastar seu dinheirinho suado,
-              montamos uma lista que pode ajudar, logo aqui embaixo.
-            </p>
+              <p class="gift-text">
+                Já que você vai gastar seu dinheirinho suado,
+                montamos uma lista que pode ajudar, logo aqui embaixo.
+              </p>
+            </div>
+        
           </div>
         </section>
 
