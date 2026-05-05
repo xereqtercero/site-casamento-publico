@@ -1206,58 +1206,77 @@
     }
 
     .gift-section {
+      position: relative;
       min-height: 100vh;
-    
-      /* FUNDO */
-      background-image: url("fundo_pag_7.png");
-      background-size: cover;
-      background-position: center;
+      background: #cdc1ab;
+      overflow: hidden;
     
       display: flex;
       align-items: center;
-    
-      padding: 80px 0;
+      padding: 90px 7%;
     }
     
-    /* BLOCO DE TEXTO */
-    .gift-content {
-      max-width: 420px;
+    .gift-big-title {
+      position: absolute;
+      left: 0;
     
-      margin-left: 8%;
+      font-family: "Quattrocento", serif;
+      font-size: clamp(120px, 17vw, 250px);
+      line-height: 0.85;
+      color: #a89b85;
+      opacity: 0.75;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    .gift-big-title-top {
+      top: 0;
+    }
+    
+    .gift-big-title-bottom {
+      bottom: -10px;
+      left: 14%;
+    }
+    
+    .gift-birds {
+      position: absolute;
+      right: -40px;
+      top: 13%;
+      width: min(42vw, 520px);
+      opacity: 0.72;
+      z-index: 2;
+      pointer-events: none;
+    }
+    
+    .gift-content {
+      position: relative;
+      z-index: 3;
+      max-width: 620px;
+      margin-left: 0;
     }
     
     .gift-content h2 {
+      margin: 0 0 34px;
+    
       font-family: "Quattrocento", serif;
-      font-weight: 400 !important; 
-      font-size: 32px;
+      font-weight: 400;
+      font-size: 30px;
+      line-height: 1.25;
       color: #2d2b25;
-    
-      margin-bottom: 40px;
-    
-      letter-spacing: 1px;
     }
     
-    /* FRASE PRINCIPAL */
-    .gift-content h3 {
-      font-family: "Quattrocento", serif;
-      font-weight: 400 !important;
-      font-size: 26px;
-      color: #2d2b25;
-    
-      margin-bottom: 30px;
-      line-height: 1.4;
-    }
-    
-    /* TEXTOS */
     .gift-text {
+      max-width: 620px;
+      margin: 0 0 28px;
+    
       font-family: "RobotoMono", monospace;
       font-weight: 300;
       font-size: 14px;
-      color: #6f6655;
-    
-      line-height: 1.8;
-    
-      margin-bottom: 20px;
+      line-height: 1.75;
+      color: #2d2b25;
     }
 
     .gift-grid-section {
@@ -2009,18 +2028,47 @@
       /* LISTA DE PRESENTES INTRO MOBILE */
       .gift-section {
         min-height: 100svh;
-        padding: 80px 24px;
+        padding: 110px 28px 120px;
         align-items: center;
-        background-position: 100% center;
-        background-size: 180%;  
+        background: #cdc1ab;
       }
-    
+      
+      .gift-big-title {
+        font-size: 86px;
+        opacity: 0.65;
+      }
+      
+      .gift-big-title-top {
+        top: 20px;
+        left: -8px;
+      }
+      
+      .gift-big-title-bottom {
+        bottom: 18px;
+        left: -8px;
+      }
+      
+      .gift-birds {
+        right: -70px;
+        top: 13%;
+        width: 330px;
+        opacity: 0.55;
+      }
+      
       .gift-content {
         max-width: 100%;
         margin-left: 0;
       }
-
-      .gift-content p {
+      
+      .gift-content h2 {
+        font-size: 30px;
+        line-height: 1.25;
+        margin-bottom: 32px;
+      }
+      
+      .gift-text {
+        font-size: 13px;
+        line-height: 1.75;
         color: #2d2b25;
       }
 
@@ -2400,11 +2448,13 @@
         </section>
 
         <section class="gift-section">
+          <div class="gift-big-title gift-big-title-top">LISTA DE</div>
+          <div class="gift-big-title gift-big-title-bottom">PRESENTES</div>
+        
+          <img src="passaros_1.png" class="gift-birds" alt="">
+        
           <div class="gift-content">
-        
-            <h2>LISTA DE PRESENTES</h2>
-        
-            <h3>Sua presença é o melhor<br>presente de todos.</h3>
+            <h2>Sua presença é o melhor presente de todos.</h2>
         
             <p class="gift-text">
               Se ainda assim, você sentir vontade de nos presentear,
@@ -2415,7 +2465,6 @@
               Já que você vai gastar seu dinheirinho suado,
               montamos uma lista que pode ajudar.
             </p>
-        
           </div>
         </section>
 
