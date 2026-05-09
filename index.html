@@ -2746,36 +2746,6 @@
 
       html += `<p class="warning-message">Você atingiu a quantidade máxima de convidados permitidos para este convite.</p>`;
     }
-
-    function toggleIdadeCrianca(index) {
-      const select = document.getElementById(`idade${index}`);
-      const box = document.getElementById(`idadeCriancaBox${index}`);
-      const input = document.getElementById(`idadeCrianca${index}`);
-    
-      if (!select || !box || !input) return;
-    
-      if (select.value === "Criança") {
-        box.style.display = "block";
-      } else {
-        box.style.display = "none";
-        input.value = "";
-      }
-    }
-
-    function toggleIdadeCrianca(index) {
-      const select = document.getElementById(`idade${index}`);
-      const box = document.getElementById(`idadeCriancaBox${index}`);
-      const input = document.getElementById(`idadeCrianca${index}`);
-    
-      if (!select || !box || !input) return;
-    
-      if (select.value === "Criança") {
-        box.style.display = "block";
-      } else {
-        box.style.display = "none";
-        input.value = "";
-      }
-    }
     
     html += `<button class="button" type="button" onclick="enviar()">Confirmar</button></div>`;
 
@@ -2784,6 +2754,21 @@
     const form = document.getElementById("form-rsvp");
     if (form) {
       form.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  function toggleIdadeCrianca(index) {
+    const select = document.getElementById(`idade${index}`);
+    const box = document.getElementById(`idadeCriancaBox${index}`);
+    const input = document.getElementById(`idadeCrianca${index}`);
+  
+    if (!select || !box || !input) return;
+  
+    if (select.value === "Criança") {
+      box.style.display = "block";
+    } else {
+      box.style.display = "none";
+      input.value = "";
     }
   }
 
@@ -2802,8 +2787,8 @@
     const acompanhantesPayload = [];
 
     if (Array.isArray(convidadoAtual.acompanhantes) && convidadoAtual.acompanhantes.length > 0) {
-      for (let i = 0; i < convidados.length; i++) {
-        const nome = document.getElementById(`nome${i + 1}`).value;
+      for (let i = 0; i < convidadoAtual.acompanhantes.length; i++) {
+        const nome = convidadoAtual.acompanhantes[i];
         const idade = document.getElementById(`idade${i + 1}`).value;
         const presenca = document.getElementById(`p${i + 1}`).value;
       
@@ -2827,6 +2812,7 @@
           presenca
         });
       }
+    }
 
     const payload = {
         nomeConvite: convidadoAtual.nome,
