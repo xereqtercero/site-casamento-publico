@@ -2708,12 +2708,6 @@
         <label>Nome principal</label>
         <input type="text" value="${c.nome}" disabled>
 
-        <label>Grupo de idade</label>
-        <select id="idade0">
-          <option value="Adulto">Adulto</option>
-          <option value="Criança">Criança</option>
-        </select>
-
         <label>Você irá?</label>
         <select id="p0">
           <option value="">Selecione</option>
@@ -2731,10 +2725,15 @@
           <input type="text" value="${a}" disabled>
 
           <label>Grupo de idade</label>
-          <select id="idade${i + 1}">
+          <select id="idade${i + 1}" onchange="toggleIdadeCrianca(${i + 1})">
             <option value="Adulto">Adulto</option>
             <option value="Criança">Criança</option>
           </select>
+
+          <div id="idadeCriancaBox${i + 1}" style="display:none;">
+            <label>Idade da criança</label>
+            <input id="idadeCrianca${i + 1}" type="text" placeholder="Ex: 5">
+          </div>
 
           <label>Presença</label>
           <select id="p${i + 1}">
@@ -2748,6 +2747,36 @@
       html += `<p class="warning-message">Você atingiu a quantidade máxima de convidados permitidos para este convite.</p>`;
     }
 
+    function toggleIdadeCrianca(index) {
+      const select = document.getElementById(`idade${index}`);
+      const box = document.getElementById(`idadeCriancaBox${index}`);
+      const input = document.getElementById(`idadeCrianca${index}`);
+    
+      if (!select || !box || !input) return;
+    
+      if (select.value === "Criança") {
+        box.style.display = "block";
+      } else {
+        box.style.display = "none";
+        input.value = "";
+      }
+    }
+
+    function toggleIdadeCrianca(index) {
+      const select = document.getElementById(`idade${index}`);
+      const box = document.getElementById(`idadeCriancaBox${index}`);
+      const input = document.getElementById(`idadeCrianca${index}`);
+    
+      if (!select || !box || !input) return;
+    
+      if (select.value === "Criança") {
+        box.style.display = "block";
+      } else {
+        box.style.display = "none";
+        input.value = "";
+      }
+    }
+    
     html += `<button class="button" type="button" onclick="enviar()">Confirmar</button></div>`;
 
     resultado.innerHTML = html;
@@ -2764,7 +2793,6 @@
     if (!convidadoAtual) return;
 
     const presencaPrincipal = document.getElementById("p0").value;
-    const idadePrincipal = document.getElementById("idade0").value;
 
     if (!presencaPrincipal) {
       alert("Selecione a presença do convidado principal.");
@@ -2774,28 +2802,35 @@
     const acompanhantesPayload = [];
 
     if (Array.isArray(convidadoAtual.acompanhantes) && convidadoAtual.acompanhantes.length > 0) {
-      for (let i = 0; i < convidadoAtual.acompanhantes.length; i++) {
-        const nome = convidadoAtual.acompanhantes[i];
+      for (let i = 0; i < convidados.length; i++) {
+        const nome = document.getElementById(`nome${i + 1}`).value;
         const idade = document.getElementById(`idade${i + 1}`).value;
         const presenca = document.getElementById(`p${i + 1}`).value;
-
+      
+        const idadeCrianca =
+          document.getElementById(`idadeCrianca${i + 1}`)?.value.trim() || "";
+      
         if (!presenca) {
-          alert(`Selecione a presença de ${nome}.`);
+          alert(`Selecione a presença de ${nome}`);
           return;
         }
-
+      
+        if (idade === "Criança" && !idadeCrianca) {
+          alert(`Informe a idade da criança: ${nome}.`);
+          return;
+        }
+      
         acompanhantesPayload.push({
           nome,
           idade,
+          idadeCrianca,
           presenca
         });
       }
-    }
 
     const payload = {
       nomeConvite: convidadoAtual.nome,
       nomePrincipal: convidadoAtual.nome,
-      idadePrincipal: idadePrincipal,
       presencaPrincipal: presencaPrincipal,
       acompanhantes: acompanhantesPayload
     };
